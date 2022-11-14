@@ -1,0 +1,35 @@
+@import '../../styles/colors.scss';
+
+.active {
+  color: #fff;
+}
+
+.buttons {
+  margin: 2rem 0 auto;
+}
+
+.inactive {
+  color: #403f41;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content {
+  margin: 2rem;
+}
+
+.link {
+  font-size: 1.2rem;
+  font-weight: 400;
+  height: 2.4rem;
+  text-align: center;
+  white-space: nowrap;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
