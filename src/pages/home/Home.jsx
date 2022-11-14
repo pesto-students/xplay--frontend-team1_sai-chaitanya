@@ -18,7 +18,16 @@ const Home = () => {
                 id="logout-button"
                 onClick={logOutRedirect}
                 title="Logout"
-            >Logout</Button>
+            >
+                Logout
+            </Button>
+            <Button
+                id="test-button"
+                onClick={() => { throw new Error('test error') }}
+                title="Generate test error"
+            >
+                Generate test error
+            </Button>
         </>
     );
 }

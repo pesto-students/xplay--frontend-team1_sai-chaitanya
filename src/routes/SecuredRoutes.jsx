@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import * as Sentry from "@sentry/react";
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 import { LoginCallback, Security, SecureRoute } from '@okta/okta-react';
 
 import { Home } from '../pages';
-import { jwtInterceptor } from './interceptors';
-import { OKTA_AUTH_CONFIG } from './config/okta';
-import { AuthRequiredModal, CorsErrorModal } from '../templates';
 import { Login, SignUp } from '../organisms';
+import { jwtInterceptor } from './interceptors';
+import { OKTA_AUTH_CONFIG, SENTRY_CONFIG } from './config';
+import { AuthRequiredModal, CorsErrorModal } from '../templates';
 
 const oktaAuth = new OktaAuth(OKTA_AUTH_CONFIG);
 
 jwtInterceptor();
+
+Sentry.init(SENTRY_CONFIG);
 
 const SecuredRoutes = () => {
     const [corsErrorModalOpen, setCorsErrorModalOpen] = useState(false);
@@ -43,22 +46,24 @@ const SecuredRoutes = () => {
     };
 
     return (
-        <Security
-            oktaAuth={oktaAuth}
-            onAuthRequired={customAuthHandler}
-            restoreOriginalUri={restoreOriginalUri}
-        >
-            <CorsErrorModal {...{ corsErrorModalOpen, setCorsErrorModalOpen }} />
-            <AuthRequiredModal {...{ authRequiredModalOpen, setAuthRequiredModalOpen, triggerLogin }} />
-            <Switch>
-                <Route path="/login/callback"
-                    component={(props) => <LoginCallback {...props} onAuthResume={onAuthResume} />} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} />
-                <SecureRoute exact path="/home" component={Home} />
-                <Redirect from='/' to='/home' />
-            </Switch>
-        </Security>
+        <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
+            <Security
+                oktaAuth={oktaAuth}
+                onAuthRequired={customAuthHandler}
+                restoreOriginalUri={restoreOriginalUri}
+            >
+                <CorsErrorModal {...{ corsErrorModalOpen, setCorsErrorModalOpen }} />
+                <AuthRequiredModal {...{ authRequiredModalOpen, setAuthRequiredModalOpen, triggerLogin }} />
+                <Switch>
+                    <Route path="/login/callback"
+                        component={(props) => <LoginCallback {...props} onAuthResume={onAuthResume} />} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/signup" component={SignUp} />
+                    <SecureRoute exact path="/home" component={Home} />
+                    <Redirect from='/' to='/home' />
+                </Switch>
+            </Security>
+        </Sentry.ErrorBoundary>
     );
 }
 
