@@ -4,12 +4,16 @@ import { useOktaAuth } from "@okta/okta-react";
 import { Form } from "../../form";
 import { FormField } from "../../../molecules";
 import { PublicHeader } from "../../publicHeader";
+import { getError } from "../helpers";
 
 const Login = () => {
     const { oktaAuth } = useOktaAuth();
     const [sessionToken, setSessionToken] = useState(null);
+    const [error, setError] = useState({ hasError: false, message: '' });
+    const [loading, setLoading] = useState(false);
 
     const onSubmit = (formData) => {
+        setLoading(true);
         const data = {
             username: formData.email,
             password: formData.password,
@@ -28,7 +32,10 @@ const Login = () => {
                     sessionToken: sessionToken,
                 });
             })
-            .catch((err) => console.log("handle error here", err));
+            .catch((err) => {
+                let errorMessage = getError(err?.errorCode, err?.errorSummary);
+                setError(e => ({ hasError: true, message: errorMessage }));
+            }).finally(() => setLoading(false));
     };
 
     if (sessionToken) return <div />;
@@ -38,7 +45,9 @@ const Login = () => {
             <PublicHeader />
             <Form
                 ariaLabel="Login"
+                error={error}
                 id="login-form"
+                loading={loading}
                 name="login-form"
                 onSubmit={onSubmit}
                 submitLabel="Login"
@@ -48,12 +57,27 @@ const Login = () => {
                     label="Email Address"
                     name="email"
                     placeholder="Enter email address"
+                    rules={[
+                        {
+                            required: true,
+                            message: `Please enter your email!`,
+                        }, {
+                            type: 'email',
+                            message: 'The input is not valid E-mail!',
+                        }
+                    ]}
                 />
                 <FormField
                     id="password"
                     label="Password"
                     name="password"
                     placeholder="Enter password"
+                    rules={[
+                        {
+                            required: true,
+                            message: `Please enter your password!`,
+                        }
+                    ]}
                     type="password"
                 />
             </Form>

@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .active {
   color: #fff;
 }
@@ -26,4 +28,8 @@
   height: 2.4rem;
   text-align: center;
   white-space: nowrap;
+
+  &:hover {
+    color: $primary-color;
+  }
 }

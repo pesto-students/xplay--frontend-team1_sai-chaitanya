@@ -12,6 +12,7 @@ const FormItem = ({
     return (
         <AntdForm.Item
             aria-label={ariaLabel}
+            hasFeedback
             id={id}
             label={label}
             name={name}

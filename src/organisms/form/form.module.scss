@@ -1,0 +1,17 @@
+@import "../../styles/colors.scss";
+
+.submitButton {
+  border-radius: 0.4rem;
+  color: black;
+  background-color: white;
+  margin: 0.8rem auto;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+
+  &:focus {
+    color: black;
+    background-color: white;
+  }
+}

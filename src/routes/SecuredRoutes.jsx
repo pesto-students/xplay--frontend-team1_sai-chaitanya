@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 import { LoginCallback, Security, SecureRoute } from '@okta/okta-react';
 
@@ -56,6 +56,7 @@ const SecuredRoutes = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={SignUp} />
                 <SecureRoute exact path="/home" component={Home} />
+                <Redirect from='/' to='/home' />
             </Switch>
         </Security>
     );
