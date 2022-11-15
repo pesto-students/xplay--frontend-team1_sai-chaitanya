@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Button, Col, Form as AntdForm, Row, Space, Typography } from 'antd';
+import { Button, Col, Form as AntdForm, Row, Typography } from 'antd';
 
 import styles from './form.module.scss';
 

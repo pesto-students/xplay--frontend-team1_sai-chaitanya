@@ -13,10 +13,7 @@ const Input = ({
     />
 );
 
-const AntdInputProps = AntdInput.propTypes;
-
 Input.propTypes = {
-    ...AntdInputProps,
     ariaLabel: PropTypes.string,
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
