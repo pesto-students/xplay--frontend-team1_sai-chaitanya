@@ -1,0 +1,21 @@
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: black;
+    background-color: black;
+  }
+  
+  .site-layout .site-layout-background {
+    background: black;
+  }
+  
+  .imgresize{
+    background-image: url(./images/image1.png);
+  
+      /* Full height */
+      height: 500px; 
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  
