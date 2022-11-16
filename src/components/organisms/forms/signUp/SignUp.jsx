@@ -6,27 +6,30 @@ import { Form } from "../../form";
 import { getError } from "../helpers";
 import { FormField } from "../../../molecules";
 import { PublicHeader } from "../../publicHeader";
-import { API_BASE_URL, ENDPOINTS } from "../../../constants";
-import { notification } from "antd";
+import { API_BASE_URL, ENDPOINTS } from "../../../../constants";
+import { message as notify } from "antd";
+
+const key = 'updatable';
 
 const SignUp = () => {
     const history = useHistory();
     const [error, setError] = useState({ hasError: false, message: '' });
     const [loading, setLoading] = useState(false);
 
-    const openNotificationWithIcon = (description, message = 'success', type = 'success') => {
-        notification[type]({
-            message: message,
-            description: description,
+    const openMessage = (description, type = 'success') => {
+        notify?.[type]({
+            content: description,
+            key,
         });
     };
 
     const onSubmit = async (formData) => {
+        openMessage('Signing up', 'loading');
         setLoading(true);
         try {
             await axios.post(`${API_BASE_URL}/${ENDPOINTS.SIGN_UP}`, formData);
             history.push('/login');
-            openNotificationWithIcon('User created successfully, please login with your creadentials now!', 'Success');
+            openMessage('User created successfully, please login with your creadentials now!');
         } catch (err) {
             if (err?.response?.data) {
                 const error = err?.response?.data;

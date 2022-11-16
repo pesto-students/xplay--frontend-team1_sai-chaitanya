@@ -5,10 +5,9 @@ import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 import { LoginCallback, Security, SecureRoute } from '@okta/okta-react';
 
 import { Home } from '../pages';
-import { Login, SignUp } from '../organisms';
+import { AuthRequiredModal, CorsErrorModal, Login, SignUp } from '../components';
 import { jwtInterceptor } from './interceptors';
 import { OKTA_AUTH_CONFIG, SENTRY_CONFIG } from './config';
-import { AuthRequiredModal, CorsErrorModal } from '../templates';
 
 const oktaAuth = new OktaAuth(OKTA_AUTH_CONFIG);
 
