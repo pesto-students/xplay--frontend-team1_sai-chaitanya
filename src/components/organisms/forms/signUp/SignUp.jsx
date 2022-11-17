@@ -1,32 +1,36 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { message as notify } from "antd";
 import { useHistory } from "react-router-dom";
 
 import { Form } from "../../form";
 import { getError } from "../helpers";
+import styles from "./signup.module.scss";
 import { FormField } from "../../../molecules";
 import { PublicHeader } from "../../publicHeader";
-import { API_BASE_URL, ENDPOINTS } from "../../../constants";
-import { notification } from "antd";
+import { API_BASE_URL, ENDPOINTS } from "../../../../constants";
+
 
 const SignUp = () => {
+    const key = 'signupKey';
     const history = useHistory();
-    const [error, setError] = useState({ hasError: false, message: '' });
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState({ hasError: false, message: '' });
 
-    const openNotificationWithIcon = (description, message = 'success', type = 'success') => {
-        notification[type]({
-            message: message,
-            description: description,
+    const openMessage = (description, type = 'success') => {
+        notify?.[type]({
+            content: description,
+            key,
         });
     };
 
     const onSubmit = async (formData) => {
+        openMessage('Signing up', 'loading');
         setLoading(true);
         try {
             await axios.post(`${API_BASE_URL}/${ENDPOINTS.SIGN_UP}`, formData);
             history.push('/login');
-            openNotificationWithIcon('User created successfully, please login with your creadentials now!', 'Success');
+            openMessage('User created successfully, please login with your creadentials now!');
         } catch (err) {
             if (err?.response?.data) {
                 const error = err?.response?.data;
@@ -40,7 +44,7 @@ const SignUp = () => {
     };
 
     return (
-        <>
+        <div className={styles.publicBg}>
             <PublicHeader />
             <Form
                 ariaLabel="Sign Up"
@@ -104,7 +108,7 @@ const SignUp = () => {
                     type="password"
                 />
             </Form>
-        </>
+        </div>
     );
 }
 

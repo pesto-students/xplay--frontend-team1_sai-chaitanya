@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Image, Row, Space } from "antd";
+import { Link, useLocation } from "react-router-dom";
 
 import styles from "./publicHeader.module.scss";
-import { Link, useLocation } from "react-router-dom";
 
 const PublicHeader = () => {
     const pathname = useLocation().pathname;
@@ -13,7 +13,7 @@ const PublicHeader = () => {
                 <Image
                     height={56}
                     preview={false}
-                    src="/XPlay_logo_black.jpg"
+                    src="assets/images/xplay_logo_black.jpg"
                     width={168}
                 />
                 <Row gutter={32} className={styles?.buttons}>

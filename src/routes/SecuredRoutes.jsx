@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
+import { Progress } from 'antd';
 import * as Sentry from "@sentry/react";
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { LoginCallback, Security, SecureRoute } from '@okta/okta-react';
 
-import { Home } from '../pages';
-import { Login, SignUp } from '../organisms';
+import { Login } from '../components';
 import { jwtInterceptor } from './interceptors';
 import { OKTA_AUTH_CONFIG, SENTRY_CONFIG } from './config';
-import { AuthRequiredModal, CorsErrorModal } from '../templates';
+
+const Home = lazy(() => import('../pages/home/Home'));
+const SignUp = lazy(() =>
+    import('../components/organisms/forms/signUp/SignUp'));
+const CorsErrorModal = lazy(() =>
+    import('../components/templates/corsErrorModal/CorsErrorModal'));
+const AuthRequiredModal = lazy(() =>
+    import('../components/templates/authRequiredModal/AuthRequiredModal'));
+
 
 const oktaAuth = new OktaAuth(OKTA_AUTH_CONFIG);
 
@@ -47,22 +55,24 @@ const SecuredRoutes = () => {
 
     return (
         <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
-            <Security
-                oktaAuth={oktaAuth}
-                onAuthRequired={customAuthHandler}
-                restoreOriginalUri={restoreOriginalUri}
-            >
-                <CorsErrorModal {...{ corsErrorModalOpen, setCorsErrorModalOpen }} />
-                <AuthRequiredModal {...{ authRequiredModalOpen, setAuthRequiredModalOpen, triggerLogin }} />
-                <Switch>
-                    <Route path="/login/callback"
-                        component={(props) => <LoginCallback {...props} onAuthResume={onAuthResume} />} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/signup" component={SignUp} />
-                    <SecureRoute exact path="/home" component={Home} />
-                    <Redirect from='/' to='/home' />
-                </Switch>
-            </Security>
+            <Suspense fallback={<Progress type='circle' />}>
+                <Security
+                    oktaAuth={oktaAuth}
+                    onAuthRequired={customAuthHandler}
+                    restoreOriginalUri={restoreOriginalUri}
+                >
+                    <CorsErrorModal {...{ corsErrorModalOpen, setCorsErrorModalOpen }} />
+                    <AuthRequiredModal {...{ authRequiredModalOpen, setAuthRequiredModalOpen, triggerLogin }} />
+                    <Switch>
+                        <Route path="/login/callback"
+                            component={(props) => <LoginCallback {...props} onAuthResume={onAuthResume} />} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/signup" component={SignUp} />
+                        <SecureRoute exact path="/home" component={Home} />
+                        <Redirect from='/' to='/home' />
+                    </Switch>
+                </Security>
+            </Suspense>
         </Sentry.ErrorBoundary>
     );
 }

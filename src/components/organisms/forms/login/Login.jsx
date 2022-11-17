@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useOktaAuth } from "@okta/okta-react";
 
 import { Form } from "../../form";
+import { getError } from "../helpers";
+import styles from "./login.module.scss";
 import { FormField } from "../../../molecules";
 import { PublicHeader } from "../../publicHeader";
-import { getError } from "../helpers";
 
 const Login = () => {
     const { oktaAuth } = useOktaAuth();
@@ -41,7 +42,7 @@ const Login = () => {
     if (sessionToken) return <div />;
 
     return (
-        <>
+        <div className={styles.publicBg}>
             <PublicHeader />
             <Form
                 ariaLabel="Login"
@@ -81,7 +82,7 @@ const Login = () => {
                     type="password"
                 />
             </Form>
-        </>
+        </div>
     );
 }
 export default Login;

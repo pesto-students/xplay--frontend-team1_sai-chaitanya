@@ -1,6 +1,6 @@
 import { useOktaAuth } from "@okta/okta-react";
 
-import { Button } from "../../atoms";
+import { Button } from "../../components";
 import { useAuth } from "../../hooks";
 
 const Home = () => {
