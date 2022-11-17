@@ -3,7 +3,7 @@ import { AppRoutes } from "./routes";
 
 function App() {
   return (
-    <div className="App login-bg">
+    <div className="App">
       <AppRoutes />
     </div>
   );

@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { message as notify } from "antd";
 import { useHistory } from "react-router-dom";
 
 import { Form } from "../../form";
 import { getError } from "../helpers";
+import styles from "./signup.module.scss";
 import { FormField } from "../../../molecules";
 import { PublicHeader } from "../../publicHeader";
 import { API_BASE_URL, ENDPOINTS } from "../../../../constants";
-import { message as notify } from "antd";
 
-const key = 'updatable';
 
 const SignUp = () => {
+    const key = 'signupKey';
     const history = useHistory();
-    const [error, setError] = useState({ hasError: false, message: '' });
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState({ hasError: false, message: '' });
 
     const openMessage = (description, type = 'success') => {
         notify?.[type]({
@@ -43,7 +44,7 @@ const SignUp = () => {
     };
 
     return (
-        <>
+        <div className={styles.publicBg}>
             <PublicHeader />
             <Form
                 ariaLabel="Sign Up"
@@ -107,7 +108,7 @@ const SignUp = () => {
                     type="password"
                 />
             </Form>
-        </>
+        </div>
     );
 }
 
