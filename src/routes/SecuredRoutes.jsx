@@ -9,6 +9,7 @@ import { Login } from '../components';
 import { jwtInterceptor } from './interceptors';
 import { OKTA_AUTH_CONFIG, SENTRY_CONFIG } from './config';
 
+
 const Home = lazy(() => import('../pages/home/Home'));
 const SignUp = lazy(() =>
     import('../components/organisms/forms/signUp/SignUp'));
@@ -16,6 +17,8 @@ const CorsErrorModal = lazy(() =>
     import('../components/templates/corsErrorModal/CorsErrorModal'));
 const AuthRequiredModal = lazy(() =>
     import('../components/templates/authRequiredModal/AuthRequiredModal'));
+const WatchList = lazy(() =>
+    import('../pages/watchList/WatchList'));
 
 
 const oktaAuth = new OktaAuth(OKTA_AUTH_CONFIG);
@@ -69,6 +72,7 @@ const SecuredRoutes = () => {
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={SignUp} />
                         <SecureRoute exact path="/home" component={Home} />
+                        <SecureRoute exact path="/watchList" component={WatchList} />
                         <Redirect from='/' to='/home' />
                     </Switch>
                 </Security>
