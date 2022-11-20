@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { FullMovieList } from "../../organisms";
+import { MovieList } from "../../organisms";
 import { Content } from "antd/lib/layout/layout";
-import { Typography ,Input, Space} from "antd";
+import { Typography ,Input} from "antd";
 
 const { Search } = Input;
 function SearchBar({
@@ -32,7 +32,7 @@ function SearchBar({
       }}
     />
         <div className="site-card-wrapper">
-            <FullMovieList movieList={movieList}/>
+            <MovieList movieList={movieList}/>
         </div>
       </div>
     </Content>
@@ -40,3 +40,5 @@ function SearchBar({
 }
 
 export default SearchBar;
+
+

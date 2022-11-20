@@ -1,5 +1,6 @@
 export * from './forms';
 export * from './modal';
 export * from './publicHeader';
-export * from './fullMovieList';
+export * from './movieList';
+export * from './searchField';
 

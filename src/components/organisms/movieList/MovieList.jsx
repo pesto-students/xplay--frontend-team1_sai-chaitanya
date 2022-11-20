@@ -1,15 +1,15 @@
 import React from "react";
+import { Col, Row, Typography } from "antd";
 import PropTypes from "prop-types";
-
-import { FullMovieList } from "../../organisms";
+import {Card} from '../../molecules';
 import { Content } from "antd/lib/layout/layout";
-import { Typography } from "antd";
 
-function MovieList({
-    movieList,
-    title,
-}) {
+function MovieList({ 
+  movieList,
+  title,
+ }) {
   return (
+
     <Content>
       <div
         className="site-layout-background"
@@ -24,10 +24,23 @@ function MovieList({
         {title}
       </Typography.Title>
         <div className="site-card-wrapper">
-            <FullMovieList movieList={movieList}/>
+        <Row>
+      {movieList?.map((movie, index) => (
+        <Col xs={16} sm={12} md={12} lg={8} xl={6} xxl={4} style={{padding:0}}>
+          <Card
+            coverImage={{
+              alt: movie?.alt,
+              source: movie?.source,
+            }}
+            key={index}
+          />
+        </Col>
+      ))}
+    </Row>
         </div>
       </div>
     </Content>
+    
   );
 }
 

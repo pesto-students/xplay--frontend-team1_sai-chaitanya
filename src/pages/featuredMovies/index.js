@@ -1,3 +1,3 @@
-import FeaturedMovies from "./FeaturesMovies";
+import FeaturedMovies from "./FeaturedMovies";
 
 export default FeaturedMovies;

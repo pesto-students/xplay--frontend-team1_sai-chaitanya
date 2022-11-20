@@ -4,9 +4,9 @@ import img2 from "../../assets/images/second.png";
 import img3 from "../../assets/images/third.png";
 import img4 from "../../assets/images/fourth.png";
 import img5 from "../../assets/images/fifth.png";
-import { SearchBar } from "../../components";
+import { SearchField } from "../../components";
 
-const searchBar = [
+const movieList = [
   {
     alt: "My India",
     source: img1,
@@ -88,8 +88,12 @@ const searchBar = [
     source: img5,
   },
 ];
-function searchMovie() {
-  return <SearchBar title="Results" searchBar={searchBar} />;
+function SearchMovie() {
+  return (
+
+  <SearchField title="Search for a movie" result="Results" movieList={movieList} />
+  )
 }
 
-export default searchMovie;
+export default SearchMovie;
+

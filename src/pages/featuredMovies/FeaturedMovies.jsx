@@ -4,7 +4,7 @@ import img2 from "../../assets/images/second.png";
 import img3 from "../../assets/images/third.png";
 import img4 from "../../assets/images/fourth.png";
 import img5 from "../../assets/images/fifth.png";
-import { MovieList } from "../../components";
+import {MovieList} from "../../components"
 
 const movieList = [
   {
