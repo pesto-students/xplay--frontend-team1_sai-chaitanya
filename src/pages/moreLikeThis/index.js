@@ -1,3 +1,3 @@
-import MoreLikeThis from "./MoreLikeThis";
+import MoreLikeThis from './MoreLikeThis';
 
 export default MoreLikeThis;

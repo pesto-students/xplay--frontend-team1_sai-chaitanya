@@ -1,3 +1,3 @@
-import AuthRequiredModal from "./AuthRequiredModal";
+import AuthRequiredModal from './AuthRequiredModal';
 
-export { AuthRequiredModal };
+export default AuthRequiredModal;

@@ -1,3 +1,3 @@
 import CorsErrorModal from './CorsErrorModal';
 
-export { CorsErrorModal };
+export default CorsErrorModal;

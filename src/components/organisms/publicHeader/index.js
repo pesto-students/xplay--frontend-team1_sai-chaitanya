@@ -1,3 +1,3 @@
-import PublicHeader from "./PublicHeader";
+import PublicHeader from './PublicHeader';
 
-export { PublicHeader };
+export default PublicHeader;
