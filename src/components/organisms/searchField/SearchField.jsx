@@ -53,6 +53,7 @@ function SearchField({ movieList, title, result }) {
 										source: movie?.source
 									}}
 									key={index}
+									onClick={() => false}
 								/>
 							</Col>
 						))}
@@ -65,7 +66,7 @@ function SearchField({ movieList, title, result }) {
 
 SearchField.propTypes = {
 	movieList: PropTypes.array,
-	result: PropTypes.array,
+	result: PropTypes.string,
 	title: PropTypes.string
 };
 
