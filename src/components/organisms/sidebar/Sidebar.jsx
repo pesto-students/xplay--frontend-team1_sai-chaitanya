@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { Image, Menu } from 'antd';
 import PropTypes from 'prop-types';
@@ -37,6 +37,18 @@ const Sidebar = ({ onToggleSidebar }) => {
 	const { authState, oktaAuth } = useOktaAuth();
 	const [collapsed, setCollapsed] = useState(false);
 	const isMobile = useContext(Context.DeviceContext);
+	const [selectedMenu, setSelectedMenu] = useState('2');
+
+	useEffect(() => {
+		const unlisten = history.listen((location) => {
+			const menuKey = menuList.find(
+				(menu) => menu?.path === location.pathname
+			)?.key;
+			setSelectedMenu(`${menuKey}`);
+		});
+
+		return unlisten;
+	}, []);
 
 	if (!authState) return null;
 
@@ -82,11 +94,12 @@ const Sidebar = ({ onToggleSidebar }) => {
 			</div>
 			<Menu
 				theme="dark"
-				defaultSelectedKeys={['2']}
+				defaultSelectedKeys={[selectedMenu]}
 				mode="inline"
 				items={menuList}
 				className={styles.menu}
 				onSelect={({ key }) => handleNavigation(key)}
+				selectedKeys={[selectedMenu]}
 			/>
 		</Sider>
 	);
