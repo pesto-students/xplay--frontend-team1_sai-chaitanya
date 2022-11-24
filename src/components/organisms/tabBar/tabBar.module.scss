@@ -1,0 +1,25 @@
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    height: 7.6rem;
+    padding: 0;
+}
+
+.logoContainer {
+    align-items: end;
+    margin-bottom: 1rem;    
+}
+
+.menuIcon {
+    font-size: x-large;
+}
+
+.tabContainer {
+	& > div > div {
+		justify-content: space-evenly;
+	}
+}

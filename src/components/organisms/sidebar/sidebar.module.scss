@@ -1,0 +1,23 @@
+.logo {
+	margin-top: 0.8rem;
+}
+
+.logoContainer {
+	display: flex;
+    justify-content: center;
+	margin: 0.2rem;
+}
+
+.menu {
+	margin-top: 2rem;
+	padding-bottom: 4rem;
+}
+
+.sidebar {
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+	position: fixed;
+	top: 0;
+	width: 12rem;
+}
