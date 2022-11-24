@@ -1,13 +1,14 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import SecuredRoutes from "./SecuredRoutes";
+import SecuredRoutes from './SecuredRoutes';
 
 const AppRoutes = () => {
-    return (
-        <BrowserRouter>
-            <SecuredRoutes />
-        </BrowserRouter>
-    );
-}
+	return (
+		<BrowserRouter>
+			<SecuredRoutes />
+		</BrowserRouter>
+	);
+};
 
 export default AppRoutes;
