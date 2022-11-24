@@ -1,10 +1,16 @@
 {
-    "semi": true,
-    "tabWidth": 2,
-    "printWidth": 100,
-    "singleQuote": true,
-    "doubleQuote":true,
-    "trailingComma": "none",
-    "jsxBracketSameLine": true,
-    "endOfLine":"auto"
-  }
+  "bracketSameLine": false,
+  "doubleQuote": true,
+  "editor.formatOnSave": true,
+  "editor.tabSize" : 4,
+  "embeddedLanguageFormatting": "auto",
+  "endOfLine": "auto",
+  "jsxBracketSameLine": true,
+  "printWidth": 80,
+  "semi": true,
+  "singleAttributePerLine": true,
+  "singleQuote": true,
+  "tabWidth": 4,
+  "trailingComma": "none",
+  "useTabs": true
+}

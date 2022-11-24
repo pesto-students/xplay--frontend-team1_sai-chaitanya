@@ -1,6 +1,13 @@
-export * from './forms';
-export * from './modal';
-export * from './publicHeader';
-export * from './movieList';
-export * from './searchField';
+import Forms from './forms';
+import Modal from './modal';
+import MovieList from './movieList';
+import SearchField from './searchField';
+import PublicHeader from './publicHeader';
 
+export default {
+	...Forms,
+	Modal,
+	MovieList,
+	SearchField,
+	PublicHeader
+};

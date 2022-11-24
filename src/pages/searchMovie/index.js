@@ -1,3 +1,3 @@
-import searchMovie from "./SearchMovie";
+import SearchMovie from './SearchMovie';
 
-export default searchMovie;
+export default SearchMovie;
