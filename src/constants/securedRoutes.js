@@ -17,6 +17,7 @@ const SearchMovie = lazy(() => import('../pages/searchMovie'));
 const MoreLikeThis = lazy(() => import('../pages/moreLikeThis'));
 const LatestOnXplay = lazy(() => import('../pages/latestOnXplay'));
 const FeaturedMovies = lazy(() => import('../pages/featuredMovies'));
+const DetailScreen=   lazy(()=>import("../pages/detailScreen"));
 
 const tokens = getValueFromStorage('okta-token-storage');
 const userName = tokens?.idToken?.claims?.name || 'Test User';
@@ -69,6 +70,13 @@ const SECURED_ROUTES = [
 		path: '/moreLikeThis',
 		showOnMenubar: false,
 		title: 'More Like This'
+	},
+	{
+		component: DetailScreen,
+		exact: true,
+		path: '/detailScreen',
+		showOnMenubar: false,
+		title: 'Movie details'
 	},
 	{
 		component: SearchMovie,
