@@ -14,10 +14,10 @@ import { getValueFromStorage } from '../utils';
 const Home = lazy(() => import('../pages/home'));
 const WatchList = lazy(() => import('../pages/watchList'));
 const SearchMovie = lazy(() => import('../pages/searchMovie'));
+const DetailScreen = lazy(() => import('../pages/detailScreen'));
 const MoreLikeThis = lazy(() => import('../pages/moreLikeThis'));
 const LatestOnXplay = lazy(() => import('../pages/latestOnXplay'));
 const FeaturedMovies = lazy(() => import('../pages/featuredMovies'));
-const DetailScreen=   lazy(()=>import("../pages/detailScreen"));
 
 const tokens = getValueFromStorage('okta-token-storage');
 const userName = tokens?.idToken?.claims?.name || 'Test User';
