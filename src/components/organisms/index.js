@@ -5,6 +5,7 @@ import Sidebar from './sidebar';
 import MovieList from './movieList';
 import SearchField from './searchField';
 import PublicHeader from './publicHeader';
+import MovieDetailsContent from './movieDetailsContent';
 
 export default {
 	...Forms,
@@ -13,5 +14,6 @@ export default {
 	Sidebar,
 	MovieList,
 	SearchField,
-	PublicHeader
+	PublicHeader,
+	MovieDetailsContent
 };
