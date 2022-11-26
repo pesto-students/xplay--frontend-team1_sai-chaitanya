@@ -1,14 +1,16 @@
 import Home from './home';
 import WatchList from './watchList';
 import SearchMovie from './searchMovie';
-import FeaturedMovies from './featuredMovies';
+import DetailScreen from './detailScreen';
+import MoreLikeThis  from './moreLikeThis';
 import LatestOnXplay from './latestOnXplay';
-import MoreLikeThis from './moreLikeThis';
+import FeaturedMovies from './featuredMovies';
 
 export default {
 	Home,
 	WatchList,
 	SearchMovie,
+	DetailScreen,
 	MoreLikeThis,
 	LatestOnXplay,
 	FeaturedMovies
