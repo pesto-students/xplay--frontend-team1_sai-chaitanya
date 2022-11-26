@@ -1,41 +1,56 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import Search from 'antd/lib/transfer/search';
 import { Content } from 'antd/lib/layout/layout';
-import { Button, Col, Row, Typography } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Col,Input, Row, Typography } from 'antd';
 
+import Context from '../../../context';
 import Molecules from '../../molecules';
+import styles from './searchField.module.scss';
 
 function SearchField({ movieList, title, result }) {
+	const isMobile = useContext(Context.DeviceContext);
 	return (
 		<Content>
 			<div className="site-layout-background">
 				<Typography.Title
 					level={3}
 					style={{
-						margin: '1.2rem'
+						margin: '0.8rem'
 					}}>
 					{title}
 				</Typography.Title>
-				<div>
-					<Search
+				<div className={styles.searchRow}>
+					<Input
 						placeholder="Enter Movie Title"
-						allowClear
 						style={{
-							width: '50px',
-							marginLeft: '100px'
+							width: isMobile? '15.6rem' : '28.1rem',
+							height:'1.8rem',
+			                borderRadius:'0.4rem',
+							backgroundColor:'grey'
 						}}
 					/>
-					<Button type="primary">Search</Button>
-				</div>
+					<Button type="primary"
+					icon={<SearchOutlined />}
+					style={{
+						width: '6.25rem',
+						height:'1.8rem',
+						borderRadius:'0.4rem',
+						backgroundColor:'#FF6212',
+						marginLeft:'1.0rem',
+						border:'none',
+						color:'black'
+					}}
+					>Search</Button>
+			</div>
 				<Typography.Title
 					level={3}
 					style={{
-						margin: '1.2rem'
+						margin: '0.8rem'
 					}}>
 					{result}
 				</Typography.Title>
-				<div className="site-card-wrapper">
+            <div className="site-card-wrapper">
 					<Row>
 						{movieList?.map((movie, index) => (
 							<Col
