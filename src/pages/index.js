@@ -3,8 +3,8 @@ import WatchList from './watchList';
 import SearchMovie from './searchMovie';
 import DetailScreen from './detailScreen';
 import MoreLikeThis  from './moreLikeThis';
-import FeaturedMovies from './featuredMovies';
 import LatestOnXplay from './latestOnXplay';
+import FeaturedMovies from './featuredMovies';
 
 export default {
 	Home,
