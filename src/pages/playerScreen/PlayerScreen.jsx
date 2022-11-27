@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player';
 
 import Components from '../../components';
 import { movieService } from '../../services';
+import styles from './playerScreen.module.scss';
 
 const PlayerScreen = () => {
 	const [detailScreenMovieList, setdetailScreenMovieList] = useState([]);
@@ -26,16 +27,17 @@ const PlayerScreen = () => {
 	return (
 		<>
         <ReactPlayer
-            height="500px"
+            height='30rem'
             width="100%"
             controls
             url="https://www.youtube.com/watch?v=sLNJSxHh7GQ"  
                />
-			<Components.MovieDetailsContent
+			<Components.PlayerScreenContent
 				castDetails="Lorem ipsum(Black Widow), sit amet(Wolverine), Tushar(XMan), Suresh(SpiderMan)"
 				directorDetails="Suresh Kumar"
 				story="A Mythic and emotionally charged hero journey, Dune tells the story of Paul Atrides, a brilliant and gifted young man born into a great destiny beyond
-				his understanding, who must travel to the most dangerous planet in the universe to ensure the future of his family and his people... "></Components.MovieDetailsContent>
+				his understanding, who must travel to the most dangerous planet in the universe to ensure the future of his family and his people... ">
+                </Components.PlayerScreenContent>
 			<Components.MovieList
 				isSlider={true}
 				movieList={detailScreenMovieList}
