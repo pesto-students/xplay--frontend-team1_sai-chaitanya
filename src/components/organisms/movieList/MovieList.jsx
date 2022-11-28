@@ -57,11 +57,11 @@ const MovieList = ({
 					{movieList?.map((movie, index) => (
 						<Molecules.Card
 							coverImage={{
-								alt: movie?.name,
-								source: movie?.imageSource
+								alt: movie?.title,
+								source: movie?.coverImageUrl
 							}}
 							key={index}
-							onClick={() => onMovieClick(movie?.movieId)}
+							onClick={() => onMovieClick(movie?._id)}
 						/>
 					))}
 				</Carousel>
@@ -79,10 +79,10 @@ const MovieList = ({
 							xxl={4}>
 							<Molecules.Card
 								coverImage={{
-									alt: movie?.name,
-									source: movie?.imageSource
+									alt: movie?.title,
+									source: movie?.coverImageUrl
 								}}
-								onClick={() => onMovieClick(movie?.movieId)}
+								onClick={() => onMovieClick(movie?._id)}
 							/>
 						</Col>
 					))}

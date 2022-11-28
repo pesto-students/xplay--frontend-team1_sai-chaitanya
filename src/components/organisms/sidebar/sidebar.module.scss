@@ -1,3 +1,5 @@
+@import '../../../styles/colors.scss';
+
 .logo {
 	margin-top: 0.8rem;
 }
@@ -13,6 +15,12 @@
 	padding-bottom: 4rem;
 }
 
+.mobileLogoContainer {
+	display: flex;
+    justify-content: center;
+	margin-top: 3.2rem;
+}
+
 .sidebar {
 	bottom: 0;
 	left: 0;
@@ -20,4 +28,36 @@
 	position: fixed;
 	top: 0;
 	width: 12rem;
+
+	:global {
+		.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+			background-color: $primary-color;
+		}
+
+		.ant-menu-item {
+			color: #fff;
+		}
+
+		.ant-menu-item:hover {
+			color: $primary-color;
+		}
+	}
+}
+
+.sider {
+	height: 100%;
+	position: fixed;
+	z-index: 1;
+
+	:global {
+		.ant-layout-sider-zero-width-trigger {
+			font-size: x-large;
+			left: 1.2rem;
+			right: auto;
+			top: 0.8rem;
+		}
+		.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+			background-color: $primary-color;
+		}
+	}
 }

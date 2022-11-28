@@ -33,8 +33,8 @@ const SignUp = () => {
 				'User created successfully, please login with your creadentials now!'
 			);
 		} catch (err) {
-			if (err?.response?.data) {
-				const error = err?.response?.data;
+			if (err?.response?.data?.data) {
+				const error = err?.response?.data?.data;
 				const errorCode = error?.errorSummary?.includes('login:')
 					? error?.errorCode
 					: 'original';

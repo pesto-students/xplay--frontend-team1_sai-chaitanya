@@ -3,15 +3,15 @@
 		"eslint:recommended",
 		"plugin:import/errors",
 		"plugin:react/recommended",
-		"plugin:jsx-a11y/recommended",
-		"plugin:prettier/recommended"
+		"plugin:jsx-a11y/recommended"/* ,
+		"plugin:prettier/recommended" */
 	],
 	"plugins": ["react", "import", "jsx-a11y"],
 	"rules": {
 		"react/prop-types": 0,
 		"indent": 0,
 		"linebreak-style": 0,
-		"quotes": 0,
+		"quotes": 0/* ,
 		"prettier/prettier": [
 			"error",
 			{
@@ -19,7 +19,7 @@
 				"printWidth": 80,
 				"useTabs": true
 			}
-		]
+		] */
 	},
 	"parserOptions": {
 		"ecmaVersion": 2021,

@@ -1,24 +1,42 @@
+@import '../../../styles/colors.scss';
+
 .centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .header {
-    height: 7.6rem;
-    padding: 0;
+	height: 7.6rem;
+	padding: 0;
 }
 
 .logoContainer {
-    align-items: end;
-    margin-bottom: 1rem;    
+	align-items: end;
+	margin-bottom: 1rem;
 }
 
 .menuIcon {
-    font-size: x-large;
+	font-size: x-large;
 }
 
 .tabContainer {
+	:global {
+		.ant-tabs-tab-btn:focus,
+		.ant-tabs-tab-remove:focus,
+		.ant-tabs-tab-btn:active,
+		.ant-tabs-tab-remove:active {
+			color: $primary-color;
+		}
+
+		.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+			color: #fff;
+		}
+
+		.ant-tabs-ink-bar {
+			background: #fff;
+		}
+	}
 	& > div > div {
 		justify-content: space-evenly;
 	}

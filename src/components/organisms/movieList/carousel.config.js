@@ -8,7 +8,6 @@ const carouselSettings = {
 	className: styles.xpCarousel,
 	dots: false,
 	infinite: false,
-	initialSlide: 0,
 	nextArrow: <Atoms.MovieListArrowRight />,
 	prevArrow: <Atoms.MovieListArrowLeft />,
 	responsive: [
