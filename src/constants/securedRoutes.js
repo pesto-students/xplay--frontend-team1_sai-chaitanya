@@ -9,6 +9,8 @@ import {
 	UserOutlined,
 	LogoutOutlined
 } from '@ant-design/icons';
+import Atoms from '../components/atoms';
+
 import { getValueFromStorage } from '../utils';
 
 const Home = lazy(() => import('../pages/home'));
@@ -74,7 +76,7 @@ const SECURED_ROUTES = [
 	{
 		component: DetailScreen,
 		exact: true,
-		path: '/detailScreen',
+		path: '/detailScreen/:id?',
 		showOnMenubar: false,
 		title: 'Movie details'
 	},
@@ -102,20 +104,20 @@ const SECURED_ROUTES = [
 		title: 'Watch List'
 	},
 	{
-		component: () => <div>To be developed</div>,
+		component: () => null,
 		exact: true,
 		icon: <UsergroupAddOutlined />,
 		mobile: {
 			sequence: 1,
 			showOnMenuBar: true
 		},
-		path: '/watchParty',
+		path: '',
 		sequence: 6,
 		showOnMenubar: true,
 		title: 'Join Watch Party'
 	},
 	{
-		icon: <UserOutlined />,
+		icon: <Atoms.Divider />,
 		menubarOnly: true,
 		mobile: {
 			sequence: 2,
@@ -124,17 +126,29 @@ const SECURED_ROUTES = [
 		path: '',
 		sequence: 7,
 		showOnMenubar: true,
+		title: ''
+	},
+	{
+		icon: <UserOutlined />,
+		menubarOnly: true,
+		mobile: {
+			sequence: 3,
+			showOnMenuBar: true
+		},
+		path: '',
+		sequence: 8,
+		showOnMenubar: true,
 		title: userName
 	},
 	{
 		icon: <LogoutOutlined />,
 		menubarOnly: true,
 		mobile: {
-			sequence: 3,
+			sequence: 4,
 			showOnMenuBar: true
 		},
 		path: 'logout',
-		sequence: 8,
+		sequence: 9,
 		showOnMenubar: true,
 		title: 'Logout'
 	}

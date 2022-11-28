@@ -7,7 +7,7 @@ import Organisms from '../../organisms';
 import styles from './sidebarLayout.module.scss';
 
 const SidebarLayout = ({ children }) => {
-	const [sidebarExpanded, setSidebarExpanded] = useState(false);
+	const [sidebarExpanded, setSidebarExpanded] = useState(true);
 
 	const handleToggleSidebar = (value) => {
 		setSidebarExpanded(value);

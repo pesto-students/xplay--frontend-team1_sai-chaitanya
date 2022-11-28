@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Content } from 'antd/lib/layout/layout';
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Col, Input, message, Row, Typography } from 'antd';
+import { Button, Col, Input, Row, Typography } from 'antd';
 
 import Context from '../../../context';
 import Molecules from '../../molecules';

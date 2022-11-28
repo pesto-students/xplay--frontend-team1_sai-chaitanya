@@ -7,12 +7,13 @@ import styles from './tabBarLayout.module.scss';
 
 const TabBarLayout = ({ children }) => {
 	return (
-		<Layout>
+		<>
+			<Organisms.Sidebar />
 			<Organisms.TabBar />
 			<Layout>
 				<Content className={styles.content}>{children}</Content>
 			</Layout>
-		</Layout>
+		</>
 	);
 };
 

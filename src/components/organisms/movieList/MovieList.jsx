@@ -8,7 +8,13 @@ import Molecules from '../../molecules';
 import styles from './movieList.module.scss';
 import carouselSettings from './carousel.config';
 
-const MovieList = ({ isSlider, movieList, title }) => {
+const MovieList = ({
+	isSlider,
+	movieList,
+	onLinkClick,
+	onMovieClick,
+	title
+}) => {
 	const isMobile = useContext(Context.DeviceContext);
 
 	return (
@@ -39,7 +45,9 @@ const MovieList = ({ isSlider, movieList, title }) => {
 							xl={1}
 							xs={4}
 							xxl={1}>
-							<Typography.Link>See all</Typography.Link>
+							<Typography.Link onClick={onLinkClick}>
+								See all
+							</Typography.Link>
 						</Col>
 					)}
 				</Row>
@@ -49,11 +57,11 @@ const MovieList = ({ isSlider, movieList, title }) => {
 					{movieList?.map((movie, index) => (
 						<Molecules.Card
 							coverImage={{
-								alt: movie?.name,
-								source: movie?.imageSource
+								alt: movie?.title,
+								source: movie?.coverImageUrl
 							}}
 							key={index}
-							onClick={() => false}
+							onClick={() => onMovieClick(movie?._id)}
 						/>
 					))}
 				</Carousel>
@@ -71,10 +79,10 @@ const MovieList = ({ isSlider, movieList, title }) => {
 							xxl={4}>
 							<Molecules.Card
 								coverImage={{
-									alt: movie?.name,
-									source: movie?.imageSource
+									alt: movie?.title,
+									source: movie?.coverImageUrl
 								}}
-								onClick={() => false}
+								onClick={() => onMovieClick(movie?._id)}
 							/>
 						</Col>
 					))}
@@ -87,11 +95,15 @@ const MovieList = ({ isSlider, movieList, title }) => {
 MovieList.propTypes = {
 	isSlider: PropTypes.bool,
 	movieList: PropTypes.array,
+	onLinkClick: PropTypes.func,
+	onMovieClick: PropTypes.func,
 	title: PropTypes.string.isRequired
 };
 
 MovieList.defaultProps = {
 	isSlider: false,
+	onLinkClick: () => false,
+	onMovieClick: () => false,
 	movieList: []
 };
 

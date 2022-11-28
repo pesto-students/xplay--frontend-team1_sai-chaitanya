@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Components from '../../components';
 import { movieService } from '../../services';
 
 const Home = () => {
+	const history = useHistory();
 	const [latestMovieList, setLatestMovieList] = useState([]);
 	const [featuredMovieList, setFeaturedMovieList] = useState([]);
 
@@ -31,6 +33,10 @@ const Home = () => {
 		}
 	};
 
+	const handleNavigation = (path) => {
+		history.push(path);
+	};
+
 	useEffect(() => {
 		getFeaturedMovieList();
 		getLatestMovieList();
@@ -41,11 +47,13 @@ const Home = () => {
 			<Components.MovieList
 				isSlider={true}
 				movieList={latestMovieList}
+				onLinkClick={() => handleNavigation('/latestOnXplay')}
 				title="Latest on XPlay"
 			/>
 			<Components.MovieList
 				isSlider={true}
 				movieList={featuredMovieList}
+				onLinkClick={() => handleNavigation('/featuredMovies')}
 				title="Featured Movies"
 			/>
 		</>

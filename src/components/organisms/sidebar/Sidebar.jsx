@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Image, Menu } from 'antd';
 import PropTypes from 'prop-types';
 import Sider from 'antd/lib/layout/Sider';
@@ -17,14 +16,7 @@ const getMenuItem = (obj) => {
 		icon: icon,
 		label: title,
 		path: path,
-		style: !path
-			? {
-					marginTop: '2rem',
-					paddingBottom: '1.2rem',
-					paddingTop: '2.8rem',
-					borderTop: '1px solid'
-			  }
-			: {}
+		disabled: !path
 	};
 };
 
@@ -32,11 +24,27 @@ const menuList = SECURED_ROUTES?.filter((menu) => menu?.showOnMenubar)
 	?.sort((current, next) => (current?.sequence < next?.sequence ? -1 : 1))
 	?.map(getMenuItem);
 
+const menuListMobile = SECURED_ROUTES?.filter((menu) => menu?.mobile?.showOnMenuBar)
+	?.sort((current, next) => (current?.mobile?.sequence < next?.mobile?.sequence ? -1 : 1))
+	?.map(getMenuItem);
+
 const Sidebar = ({ onToggleSidebar }) => {
 	const history = useHistory();
 	const { authState, oktaAuth } = useOktaAuth();
-	const [collapsed, setCollapsed] = useState(false);
+	const [collapsed, setCollapsed] = useState(true);
 	const isMobile = useContext(Context.DeviceContext);
+	const [selectedMenu, setSelectedMenu] = useState('2');
+
+	useEffect(() => {
+		const unlisten = history.listen((location) => {
+			const menuKey = menuList.find(
+				(menu) => menu?.path === location.pathname
+			)?.key;
+			setSelectedMenu(`${menuKey}`);
+		});
+
+		return unlisten;
+	}, []);
 
 	if (!authState) return null;
 
@@ -55,13 +63,14 @@ const Sidebar = ({ onToggleSidebar }) => {
 
 	return (
 		<Sider
-			className={styles.sidebar}
+			breakpoint="lg"
+			className={styles[isMobile ? 'sider' : 'sidebar']}
 			collapsible
 			collapsed={collapsed}
 			collapsedWidth={isMobile ? 0 : '4rem'}
 			onCollapse={(value) => handleToggleSidebar(value)}
 			defaultCollapsed>
-			<div className={styles.logoContainer}>
+			<div className={styles[isMobile ? 'mobileLogoContainer' : 'logoContainer']}>
 				{collapsed ? (
 					<Image
 						className={styles.logo}
@@ -82,11 +91,12 @@ const Sidebar = ({ onToggleSidebar }) => {
 			</div>
 			<Menu
 				theme="dark"
-				defaultSelectedKeys={['2']}
+				defaultSelectedKeys={[selectedMenu]}
 				mode="inline"
-				items={menuList}
+				items={isMobile ? menuListMobile : menuList}
 				className={styles.menu}
 				onSelect={({ key }) => handleNavigation(key)}
+				selectedKeys={[selectedMenu]}
 			/>
 		</Sider>
 	);
@@ -97,7 +107,7 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {
-	onToggleSidebar: () => {}
+	onToggleSidebar: () => { }
 };
 
 export default Sidebar;
