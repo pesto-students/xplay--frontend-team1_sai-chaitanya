@@ -1,3 +1,3 @@
-import PlayerScreenContent from "./PlayerScreenContent";
+import PlayerScreenContent from './PlayerScreenContent';
 
 export default PlayerScreenContent;

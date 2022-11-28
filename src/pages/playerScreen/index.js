@@ -1,3 +1,3 @@
-import PlayerScreen from "./PlayerScreen";
+import PlayerScreen from './PlayerScreen';
 
 export default PlayerScreen;

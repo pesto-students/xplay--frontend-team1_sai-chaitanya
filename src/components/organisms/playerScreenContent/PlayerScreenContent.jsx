@@ -15,6 +15,9 @@ const PlayerScreenContent = ({ castDetails, directorDetails, story }) => {
 					lg={23}
 					md={20}
 					sm={20}
+					style={{
+						marginTop: isMobile ? '-0.3rem' : '-4rem'
+					}}
 					xl={23}
 					xs={20}
 					xxl={23}>
@@ -31,6 +34,9 @@ const PlayerScreenContent = ({ castDetails, directorDetails, story }) => {
 					lg={27}
 					md={25}
 					sm={30}
+					style={{
+						marginTop: isMobile ? '0' : '-2rem'
+					}}
 					xl={28}
 					xs={23}
 					xxl={25}>
