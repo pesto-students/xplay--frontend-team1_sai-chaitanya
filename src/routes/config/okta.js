@@ -1,11 +1,11 @@
-import { OKTA_CLIENT_ID, OKTA_ISSUER } from "../constants";
+import OKTA from '../constants';
 
 const OKTA_AUTH_CONFIG = {
-    issuer: OKTA_ISSUER,
-    clientId: OKTA_CLIENT_ID,
-    redirectUri: `${window.location.origin}/login/callback`,
+    issuer: OKTA.ISSUER,
+    scopes: OKTA.SCOPES,
+    clientId: OKTA.CLIENT_ID,
     postLogoutRedirectUri: `${window.location.origin}/login`,
-    scopes: ['email', 'offline_access', 'openid', 'profile']
+    redirectUri: `${window.location.origin}${OKTA.LOGIN_REDIRECT_PATH}`
 };
 
 export { OKTA_AUTH_CONFIG };

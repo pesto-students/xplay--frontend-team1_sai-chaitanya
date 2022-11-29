@@ -76,6 +76,7 @@ const Sidebar = ({ onToggleSidebar }) => {
 						className={styles.logo}
 						height={48}
 						preview={false}
+						onClick={() => history.push('/home')}
 						src="assets/images/favicon_xplay_black.jpg"
 						width={48}
 					/>
@@ -84,6 +85,7 @@ const Sidebar = ({ onToggleSidebar }) => {
 						className={styles.logo}
 						height={48}
 						preview={false}
+						onClick={() => history.push('/home')}
 						src="assets/images/xplay_logo_black.jpg"
 						width={168}
 					/>

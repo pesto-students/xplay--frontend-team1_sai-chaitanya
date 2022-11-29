@@ -1,2 +1,2 @@
-export * from './okta';
+export { default } from './okta';
 export * from './sentry';

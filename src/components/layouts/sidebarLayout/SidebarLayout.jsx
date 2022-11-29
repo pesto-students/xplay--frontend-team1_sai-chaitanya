@@ -7,10 +7,10 @@ import Organisms from '../../organisms';
 import styles from './sidebarLayout.module.scss';
 
 const SidebarLayout = ({ children }) => {
-	const [sidebarExpanded, setSidebarExpanded] = useState(true);
+	const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 
 	const handleToggleSidebar = (value) => {
-		setSidebarExpanded(value);
+		setSidebarCollapsed(value);
 	};
 
 	return (
@@ -20,7 +20,7 @@ const SidebarLayout = ({ children }) => {
 				<Content
 					className={styles.content}
 					style={{
-						marginLeft: sidebarExpanded ? '4.8rem' : '13.2rem'
+						marginLeft: sidebarCollapsed ? '4.8rem' : '13.2rem'
 					}}>
 					{children}
 				</Content>

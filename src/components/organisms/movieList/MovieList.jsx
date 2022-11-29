@@ -13,13 +13,14 @@ const MovieList = ({
 	movieList,
 	onLinkClick,
 	onMovieClick,
+	showTitleOnAllScreens,
 	title
 }) => {
 	const isMobile = useContext(Context.DeviceContext);
 
 	return (
 		<Content>
-			{((isMobile && isSlider) || !isMobile) && (
+			{((isMobile && isSlider) || !isMobile || showTitleOnAllScreens) && !!movieList.length && (
 				<Row className={styles.titleRow}>
 					<Col
 						lg={23}
@@ -53,7 +54,7 @@ const MovieList = ({
 				</Row>
 			)}
 			{isSlider ? (
-				<Carousel {...carouselSettings}>
+				<Carousel {...carouselSettings} key={Date.now()}>
 					{movieList?.map((movie, index) => (
 						<Molecules.Card
 							coverImage={{
@@ -97,6 +98,7 @@ MovieList.propTypes = {
 	movieList: PropTypes.array,
 	onLinkClick: PropTypes.func,
 	onMovieClick: PropTypes.func,
+	showTitleOnAllScreens: PropTypes.bool,
 	title: PropTypes.string.isRequired
 };
 
@@ -104,6 +106,7 @@ MovieList.defaultProps = {
 	isSlider: false,
 	onLinkClick: () => false,
 	onMovieClick: () => false,
+	showTitleOnAllScreens: false,
 	movieList: []
 };
 

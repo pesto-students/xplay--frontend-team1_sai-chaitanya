@@ -1,25 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { movieThunk } from '../../redux';
 import Components from '../../components';
-import { movieService } from '../../services';
 
 function FeaturedMovies() {
-	const [movieList, setMovieList] = useState([]);
+	const history = useHistory();
+	const dispatch = useDispatch();
 
-	const getMovieList = async () => {
-		try {
-			const response = await movieService._getMovieListByType('featured');
-			setMovieList(response.data?.data);
-		} catch (err) {
-			console.error(err);
-		}
+	const { featuredMovies } = useSelector((state) => state?.movies);
+
+	const handleMovieClick = (movieId) => {
+		history.push(`/detailScreen/${movieId}`);
 	};
 
 	useEffect(() => {
-		getMovieList();
+		dispatch(movieThunk.getMoviesByTypeThunk({
+			type: 'featured'
+		}));
 	}, []);
 
-	return <Components.MovieList title="Featured Movies" movieList={movieList} />;
+	return (
+		<Components.MovieList
+			movieList={featuredMovies}
+			onMovieClick={handleMovieClick}
+			title="Featured Movies"
+		/>
+	);
 }
 
 export default FeaturedMovies;

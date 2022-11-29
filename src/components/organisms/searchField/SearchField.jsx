@@ -1,92 +1,86 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Col, Row, Typography } from 'antd';
+import { useForm } from 'antd/lib/form/Form';
 import { Content } from 'antd/lib/layout/layout';
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Col, Input, Row, Typography } from 'antd';
 
-import Context from '../../../context';
+import Form from '../form';
 import Molecules from '../../molecules';
 import styles from './searchField.module.scss';
 
-function SearchField({ movieList, title, result }) {
-	const isMobile = useContext(Context.DeviceContext);
+const SearchField = ({ onClick, title }) => {
+	const [form] = useForm();
+
+	const handleInputChange = (e) => {
+		if (!e?.target?.value) {
+			form.resetFields();
+		}
+	}
+
+	const handleSubmit = (formData) => {
+		onClick(formData?.search);
+	};
+
 	return (
 		<Content>
-			<Typography.Title
-				level={3}
-				style={{
-					margin: '0.8rem'
-				}}>
-				{title}
-			</Typography.Title>
-			<div className={styles.searchRow}>
-				<Input
-					placeholder="Enter Movie Title"
-					style={{
-						width: isMobile ? '15.6rem' : '28.1rem',
-						height: '1.8rem',
-						borderRadius: '0.4rem',
-						backgroundColor: 'grey'
-					}}
-					maxLength="15"
-				/>
-				<Button
-					type="primary"
-					icon={<SearchOutlined />}
-					style={{
-						width: '6.25rem',
-						height: '1.8rem',
-						borderRadius: '0.4rem',
-						backgroundColor: '#FF6212',
-						marginLeft: '1.0rem',
-						border: 'none',
-						color: 'black'
-					}}>
-					Search
-				</Button>
-			</div>
-			<Typography.Title
-				level={3}
-				style={{
-					margin: '0.8rem'
-				}}>
-				{result}
-			</Typography.Title>
-			<Row>
-				{movieList?.map((movie, index) => (
-					<Col
-						key={index}
-						xs={16}
-						sm={12}
-						md={12}
-						lg={8}
-						xl={6}
-						xxl={4}
-						style={{ padding: 0 }}>
-						<Molecules.Card
-							coverImage={{
-								alt: movie?.alt,
-								source: movie?.source
-							}}
-							key={index}
-							onClick={() => false}
-						/>
-					</Col>
-				))}
+			<Row className={styles.titleRow}>
+				<Col
+					lg={23}
+					md={20}
+					sm={20}
+					xl={23}
+					xs={20}
+					xxl={23}>
+					<Typography.Title
+						className={styles.movieListTitle}
+						level={4}
+						style={{
+							color: '#FFF'
+						}}>
+						{title}
+					</Typography.Title>
+				</Col>
 			</Row>
+			<Form
+				ariaLabel="Search"
+				form={form}
+				formWidth={{
+					lg: 12,
+					md: 12,
+					sm: 20,
+					span: 12,
+					xl: 12,
+					xs: 20
+				}}
+				id="search-form"
+				name="search-form"
+				onSubmit={handleSubmit}
+				submitIcon={<SearchOutlined />}
+				submitLabel="Search"
+				wrapperClass={styles.form}>
+				<Molecules.FormField
+					id="search"
+					name="search"
+					placeholder="Enter movie title"
+					onChange={handleInputChange}
+					rules={[{
+						required: true,
+						message: `Please enter movie title!`
+					}]}
+				/>
+			</Form>
 		</Content>
 	);
 }
 
 SearchField.propTypes = {
-	movieList: PropTypes.array,
-	result: PropTypes.string,
+	onClick: PropTypes.func,
 	title: PropTypes.string
 };
 
 SearchField.defaultProps = {
-	movieList: [],
-	result: 'Results',
+	onClick: () => { },
 	title: 'Search for a movie'
 };
 

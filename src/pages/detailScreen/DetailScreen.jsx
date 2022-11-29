@@ -1,37 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
+import { movieThunk } from '../../redux';
 import Components from '../../components';
-import { movieService } from '../../services';
 
 const DetailScreen = () => {
-	const [detailScreenMovieList, setdetailScreenMovieList] = useState([]);
+	const { id } = useParams();
+	const history = useHistory();
+	const dispatch = useDispatch();
 
-	const getdetailScreenMovieList = async () => {
-		try {
-			const response = await movieService._getMovieListByType(
-				'featured',
-				10
-			);
-			setdetailScreenMovieList(response.data?.data);
-		} catch (err) {
-			console.error(err);
-		}
+	const { selectedMovie, moviesByGenre } = useSelector((state) => state?.movies);
+
+	const handleMovieClick = (movieId) => {
+		history.push(`/detailScreen/${movieId}`);
+	};
+
+	const handleNavigation = (path) => {
+		history.push(path);
 	};
 
 	useEffect(() => {
-		getdetailScreenMovieList();
-	}, []);
+		dispatch(movieThunk.getMoviesByGenreThunk({
+			genre: selectedMovie.genre
+		}));
+	}, [selectedMovie.genre]);
+
+	useEffect(() => {
+		dispatch(movieThunk.getMovieDetailsByIdThunk(id));
+	}, [id]);
 
 	return (
 		<>
 			<Components.MovieDetailsContent
-				castDetails="Lorem ipsum(Black Widow), sit amet(Wolverine), Tushar(XMan), Suresh(SpiderMan)"
-				directorDetails="Suresh Kumar"
-				story="A Mythic and emotionally charged hero journey, Dune tells the story of Paul Atrides, a brilliant and gifted young man born into a great destiny beyond
-				his understanding, who must travel to the most dangerous planet in the universe to ensure the future of his family and his people... "></Components.MovieDetailsContent>
+				castDetails={selectedMovie?.metadata?.cast ?? ''}
+				directorDetails={selectedMovie?.metadata?.director ?? ''}
+				story={selectedMovie?.description ?? ''}
+			/>
 			<Components.MovieList
 				isSlider={true}
-				movieList={detailScreenMovieList}
+				movieList={moviesByGenre}
+				onMovieClick={handleMovieClick}
+				onLinkClick={() =>
+					handleNavigation(`/moreLikeThis/${selectedMovie?.genre ?? 'comedy'}`)
+				}
 				title="More Like This"
 			/>
 		</>
