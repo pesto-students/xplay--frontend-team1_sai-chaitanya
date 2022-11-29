@@ -1,18 +1,66 @@
-import axios from 'axios';
-import { API_BASE_URL, ENDPOINTS } from '../../constants';
+import { http, appendUrlParams } from './utils';
+import { ENDPOINTS } from '../../constants';
 
-const _getMovieDetailsById = (id) =>
-	axios.get(
-		`${API_BASE_URL}/${ENDPOINTS.MOVIE}/${id}`
+/**
+ * @function _getMovieDetailsById
+ * @param {String} id object id of a movie
+ * @returns promise
+ */
+const _getMovieDetailsById = (id) => http.get(`${ENDPOINTS.MOVIE}/${id}`);
+
+/**
+ * @function _getMoviesByType
+ * @param {Object} { 
+ * 		type: 'featured|latest', 
+ * 		query: { limit: number, offset: number }
+ * } 
+ * @returns promise
+ */
+const _getMoviesByType = ({ type, query }) => {
+	const params = appendUrlParams(query);
+	return http.get(
+		`${ENDPOINTS.MOVIE_LIST_BY_TYPE}/${type}${params}`
 	);
+};
 
-const _getMovieListByType = (type, limit) =>
-	axios.get(
-		`${API_BASE_URL}/${ENDPOINTS.MOVIE_LIST}/${type}${limit ? '?limit=' + limit : ''
-		}`
+/**
+ * @function _getMoviesByGenre
+ * @param {Object} { 
+ * 		genre: string, 
+ * 		query: { limit: number, offset: number }
+ * } 
+ * @returns promise
+ */
+const _getMoviesByGenre = ({ genre, query }) => {
+	const params = appendUrlParams(query);
+	return http.get(
+		`${ENDPOINTS.MOVIE_LIST_BY_GENRE}/${genre}${params}`
 	);
+};
 
-const _getPromotedMovie = () =>
-	axios.get(`${API_BASE_URL}/${ENDPOINTS.PROMOTED_MOVIE}`);
+/**
+ * @function _getPromotedMovie
+ * @returns promise
+ */
+const _getPromotedMovie = () => http.get(`${ENDPOINTS.PROMOTED_MOVIE}`);
 
-export { _getPromotedMovie, _getMovieListByType, _getMovieDetailsById };
+/**
+ * @function _searchMoviesByTitle
+ * @param {Object} { 
+ * 		title: string, 
+ * 		query: { limit: number, offset: number }
+ * } 
+ * @returns promise
+ */
+const _searchMoviesByTitle = ({ title, query }) => {
+	const params = appendUrlParams(query);
+	return http.get(`${ENDPOINTS.SEARCH_MOVIE}/${title}${params}`)
+};
+
+export {
+	_getMoviesByType,
+	_getPromotedMovie,
+	_getMoviesByGenre,
+	_getMovieDetailsById,
+	_searchMoviesByTitle
+};

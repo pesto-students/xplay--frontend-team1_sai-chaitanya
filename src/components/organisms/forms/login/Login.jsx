@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm } from 'antd/lib/form/Form';
 import { useOktaAuth } from '@okta/okta-react';
 
 import Form from '../../form';
@@ -8,6 +9,7 @@ import Molecules from '../../../molecules';
 import PublicHeader from '../../publicHeader';
 
 const Login = () => {
+	const [form] = useForm();
 	const { oktaAuth } = useOktaAuth();
 	const [sessionToken, setSessionToken] = useState(null);
 	const [error, setError] = useState({ hasError: false, message: '' });
@@ -50,11 +52,13 @@ const Login = () => {
 			<Form
 				ariaLabel="Login"
 				error={error}
+				form={form}
 				id="login-form"
 				loading={loading}
 				name="login-form"
 				onSubmit={onSubmit}
-				submitLabel="Login">
+				submitLabel="Login"
+				wrapperClass={styles.form}>
 				<Molecules.FormField
 					id="email"
 					label="Email Address"

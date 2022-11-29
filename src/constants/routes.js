@@ -24,6 +24,14 @@ const FeaturedMovies = lazy(() => import('../pages/featuredMovies'));
 const tokens = getValueFromStorage('okta-token-storage');
 const userName = tokens?.idToken?.claims?.name || 'Test User';
 
+const ROUTES = {
+	HOME: '/home',
+	LOGIN: '/login',
+	SIGN_UP: '/signup',
+	LOGIN_REDIRECT_PATH: process.env.REACT_APP_OKTA_CALLBACK_ROUTE
+		?? '/login/callback'
+};
+
 const SECURED_ROUTES = [
 	{
 		component: Home,
@@ -69,7 +77,7 @@ const SECURED_ROUTES = [
 	{
 		component: MoreLikeThis,
 		exact: true,
-		path: '/moreLikeThis',
+		path: '/moreLikeThis/:genre?',
 		showOnMenubar: false,
 		title: 'More Like This'
 	},
@@ -154,4 +162,4 @@ const SECURED_ROUTES = [
 	}
 ];
 
-export { SECURED_ROUTES };
+export { ROUTES, SECURED_ROUTES };

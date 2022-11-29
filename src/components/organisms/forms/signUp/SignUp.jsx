@@ -1,49 +1,36 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { message as notify } from 'antd';
+import React, { useEffect } from 'react';
+import { useForm } from 'antd/lib/form/Form';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from '../../form';
-import { getError } from '../helpers';
+import hooks from '../../../../hooks';
 import styles from './signup.module.scss';
 import Molecules from '../../../molecules';
 import PublicHeader from '../../publicHeader';
-import { API_BASE_URL, ENDPOINTS } from '../../../../constants';
+import { userThunk } from '../../../../redux';
 
 const SignUp = () => {
-	const key = 'signupKey';
+	const [form] = useForm();
 	const history = useHistory();
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState({ hasError: false, message: '' });
+	const dispatch = useDispatch();
+	const notificationKey = 'signUp';
+	const { notify } = hooks.useNotifications();
+	const { error, loading, signUpSuccess } = useSelector((state) => state?.user);
 
-	const openMessage = (description, type = 'success') => {
-		notify?.[type]({
-			content: description,
-			key
-		});
-	};
+	useEffect(() => {
+		if (signUpSuccess) {
+			history.push('/login');
+			notify(
+				'User created successfully, please login with your creadentials now!',
+				notificationKey
+			);
+		}
+	}, [signUpSuccess])
 
 	const onSubmit = async (formData) => {
-		openMessage('Signing up', 'loading');
-		setLoading(true);
-		try {
-			await axios.post(`${API_BASE_URL}/${ENDPOINTS.SIGN_UP}`, formData);
-			history.push('/login');
-			openMessage(
-				'User created successfully, please login with your creadentials now!'
-			);
-		} catch (err) {
-			if (err?.response?.data?.data) {
-				const error = err?.response?.data?.data;
-				const errorCode = error?.errorSummary?.includes('login:')
-					? error?.errorCode
-					: 'original';
-				let errorMessage = getError(errorCode, error?.errorSummary);
-				setError(() => ({ hasError: true, message: errorMessage }));
-			}
-		} finally {
-			setLoading(false);
-		}
+		notify('Signing up', notificationKey, 'loading');
+		dispatch(userThunk.createUserThunk(formData));
 	};
 
 	return (
@@ -52,11 +39,13 @@ const SignUp = () => {
 			<Form
 				ariaLabel="Sign Up"
 				error={error}
+				form={form}
 				id="signup-form"
 				loading={loading}
 				name="signup-form"
 				onSubmit={onSubmit}
-				submitLabel="Sign Up">
+				submitLabel="Sign Up"
+				wrapperClass={styles.form}>
 				<Molecules.FormField
 					id="firstName"
 					label="First Name"

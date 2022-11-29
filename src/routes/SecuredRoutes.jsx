@@ -1,18 +1,18 @@
 import React, { lazy, Suspense, useMemo, useState } from 'react';
 import { Spin } from 'antd';
+import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { LoginCallback, Security, SecureRoute } from '@okta/okta-react';
 
 import hooks from '../hooks';
-import Components from '../components';
 import Context from '../context';
-import { SECURED_ROUTES } from '../constants';
+import { store } from '../redux';
+import Components from '../components';
 import { jwtInterceptor } from './interceptors';
+import { ROUTES, SECURED_ROUTES } from '../constants';
 import { OKTA_AUTH_CONFIG, SENTRY_CONFIG } from './config';
-
-const SignUp = lazy(() => import('../components/organisms/forms/signUp'));
 
 const CorsErrorModal = lazy(() =>
 	import('../components/templates/corsErrorModal')
@@ -20,6 +20,7 @@ const CorsErrorModal = lazy(() =>
 const AuthRequiredModal = lazy(() =>
 	import('../components/templates/authRequiredModal')
 );
+const SignUp = lazy(() => import('../components/organisms/forms/signUp'));
 
 const oktaAuth = new OktaAuth(OKTA_AUTH_CONFIG);
 
@@ -67,70 +68,72 @@ const SecuredRoutes = () => {
 	return (
 		<Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
 			<Context.DeviceContext.Provider value={isMobile}>
-				<Suspense
-					fallback={
-						<Spin
-							className="spinWrapper"
-							size="large"
-						/>
-					}>
-					<Security
-						oktaAuth={oktaAuth}
-						onAuthRequired={customAuthHandler}
-						restoreOriginalUri={restoreOriginalUri}>
-						<CorsErrorModal
-							{...{ corsErrorModalOpen, setCorsErrorModalOpen }}
-						/>
-						<AuthRequiredModal
-							{...{
-								authRequiredModalOpen,
-								setAuthRequiredModalOpen,
-								triggerLogin
-							}}
-						/>
-						<Switch>
-							<Route
-								path="/login/callback"
-								component={(props) => (
-									<LoginCallback
-										{...props}
-										onAuthResume={onAuthResume}
-									/>
-								)}
+				<Provider store={store}>
+					<Suspense
+						fallback={
+							<Spin
+								className="spinWrapper"
+								size="large"
 							/>
-							<Route
-								path="/login"
-								component={Components.Login}
+						}>
+						<Security
+							oktaAuth={oktaAuth}
+							onAuthRequired={customAuthHandler}
+							restoreOriginalUri={restoreOriginalUri}>
+							<CorsErrorModal
+								{...{ corsErrorModalOpen, setCorsErrorModalOpen }}
 							/>
-							<Route
-								path="/signup"
-								component={SignUp}
+							<AuthRequiredModal
+								{...{
+									authRequiredModalOpen,
+									setAuthRequiredModalOpen,
+									triggerLogin
+								}}
 							/>
-							<Route
-								path={SECURED_ROUTES.map(
-									(route) => route?.path
-								)}>
-								<LayoutComponent>
-									{SECURED_ROUTES?.filter(
-										(securedRoute) =>
-											!securedRoute?.menubarOnly
-									)?.map((securedRoute, index) => (
-										<SecureRoute
-											exact={securedRoute?.exact}
-											key={index}
-											path={securedRoute?.path}
-											component={securedRoute?.component}
+							<Switch>
+								<Route
+									path={ROUTES.LOGIN_REDIRECT_PATH}
+									component={(props) => (
+										<LoginCallback
+											{...props}
+											onAuthResume={onAuthResume}
 										/>
-									))}
-								</LayoutComponent>
-							</Route>
-							<Redirect
-								from="/"
-								to="/home"
-							/>
-						</Switch>
-					</Security>
-				</Suspense>
+									)}
+								/>
+								<Route
+									path={ROUTES.LOGIN}
+									component={Components.Login}
+								/>
+								<Route
+									path={ROUTES.SIGN_UP}
+									component={SignUp}
+								/>
+								<Route
+									path={SECURED_ROUTES.map(
+										(route) => route?.path
+									)}>
+									<LayoutComponent>
+										{SECURED_ROUTES?.filter(
+											(securedRoute) =>
+												!securedRoute?.menubarOnly
+										)?.map((securedRoute, index) => (
+											<SecureRoute
+												exact={securedRoute?.exact}
+												key={index}
+												path={securedRoute?.path}
+												component={securedRoute?.component}
+											/>
+										))}
+									</LayoutComponent>
+								</Route>
+								<Redirect
+									from="/"
+									to={ROUTES.HOME}
+								/>
+							</Switch>
+						</Security>
+					</Suspense>
+				</Provider>
 			</Context.DeviceContext.Provider>
 		</Sentry.ErrorBoundary>
 	);

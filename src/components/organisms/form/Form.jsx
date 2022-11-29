@@ -8,6 +8,8 @@ const Form = ({
 	ariaLabel,
 	children,
 	error,
+	form,
+	formWidth,
 	id,
 	labelAlign,
 	layout,
@@ -16,14 +18,18 @@ const Form = ({
 	onError,
 	onReset,
 	onSubmit,
-	submitLabel
+	submitIcon,
+	submitLabel,
+	wrapperClass
 }) => {
 	return (
 		<Row justify="center">
-			<Col lg={6} md={8} sm={12} span={6} xl={6} xs={12}>
+			<Col {...formWidth}>
 				<AntdForm
 					aria-label={ariaLabel}
 					autoComplete="off"
+					className={wrapperClass}
+					form={form}
 					initialValues={{
 						remember: true
 					}}
@@ -51,6 +57,7 @@ const Form = ({
 							<Button
 								className={styles.submitButton}
 								htmlType="submit"
+								icon={submitIcon}
 								loading={loading}
 								type="primary">
 								{submitLabel}
@@ -65,8 +72,10 @@ const Form = ({
 
 Form.propTypes = {
 	ariaLabel: PropTypes.string,
-	children: PropTypes.array.isRequired,
+	children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
 	error: PropTypes.shape({ error: PropTypes.bool, message: PropTypes.string }),
+	form: PropTypes.any,
+	formWidth: PropTypes.object,
 	id: PropTypes.string.isRequired,
 	labelAlign: PropTypes.oneOf(['left', 'right']),
 	layout: PropTypes.oneOf(['inline', 'horizontal', 'vertical']),
@@ -75,19 +84,32 @@ Form.propTypes = {
 	onError: PropTypes.func,
 	onReset: PropTypes.func,
 	onSubmit: PropTypes.func.isRequired,
-	submitLabel: PropTypes.string
+	submitIcon: PropTypes.element,
+	submitLabel: PropTypes.string,
+	wrapperClass: PropTypes.string
 };
 
 Form.defaultProps = {
 	ariaLabel: 'form',
 	error: { error: false, message: '' },
+	form: '',
+	formWidth: {
+		lg: 6,
+		md: 8,
+		sm: 20,
+		span: 6,
+		xl: 6,
+		xs: 20
+	},
 	labelAlign: 'left',
 	layout: 'vertical',
 	loading: false,
 	name: 'form',
-	onError: () => {},
-	onReset: () => {},
-	submitLabel: 'Submit'
+	onError: () => { },
+	onReset: () => { },
+	submitIcon: null,
+	submitLabel: 'Submit',
+	wrapperClass: ''
 };
 
 export default Form;

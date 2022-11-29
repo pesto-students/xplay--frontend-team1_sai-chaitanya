@@ -1,10 +1,12 @@
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const ENDPOINTS = {
-	MOVIE: 'api/movie',
-	SIGN_UP: 'api/auth/signup',
-	MOVIE_LIST: 'api/movieList',
-	PROMOTED_MOVIE: 'api/promotedMovie'
+	MOVIE: '/movie',
+	SIGN_UP: '/auth/signup',
+	MOVIE_LIST_BY_TYPE: '/movieList',
+	PROMOTED_MOVIE: '/promotedMovie',
+	SEARCH_MOVIE: '/movieList/search',
+	MOVIE_LIST_BY_GENRE: '/movieList/genre'
 };
 
 export { API_BASE_URL, ENDPOINTS };

@@ -1,6 +1,30 @@
-.searchRow{
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
+@import '../../../styles/colors.scss';
+
+.form {
+	display: flex;
+	flex-direction: inherit;
+
+	:global {
+		.ant-btn {
+			background-color: $primary-color;
+			margin: auto 1.2rem;
+		}
+
+		.ant-form-item {
+			width: 100%;
+		}
+
+		.ant-input-affix-wrapper {
+			background: $input-bg-color;
+		}
+	}
+}
+
+.movieListTitle {
+	color: $primary-color;
+	margin: auto 1.2rem;
+}
+
+.titleRow {
+	margin-top: 1.2rem;
 }
