@@ -5,6 +5,7 @@ import Sidebar from './sidebar';
 import MovieList from './movieList';
 import SearchField from './searchField';
 import PublicHeader from './publicHeader';
+import WatchPartyContent from './watchPartyContent';
 import MovieDetailsContent from './movieDetailsContent';
 
 export default {
@@ -15,5 +16,6 @@ export default {
 	MovieList,
 	SearchField,
 	PublicHeader,
+	WatchPartyContent,
 	MovieDetailsContent
 };
