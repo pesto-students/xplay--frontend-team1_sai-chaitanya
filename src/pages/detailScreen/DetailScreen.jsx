@@ -32,6 +32,7 @@ const DetailScreen = () => {
 
 	return (
 		<>
+			<Components.MovieCover movieDetails={selectedMovie ?? {}} />
 			<Components.MovieDetailsContent
 				castDetails={selectedMovie?.metadata?.cast ?? ''}
 				directorDetails={selectedMovie?.metadata?.director ?? ''}
