@@ -4,6 +4,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+    height: 100%;
 }
 
 .rightchild {
@@ -23,7 +24,6 @@
 }
 
 .header {
-	font-size: 1rem;
 	color: lightgray;
 }
 .name {
@@ -32,12 +32,12 @@
 	font-weight: 500;
 }
 h1 {
-	margin-top: 9rem;
+	margin-top: 5.2rem;
 	font-weight: 500;
 }
 
 h6 {
-	margin-top: 17.6rem;
+	margin-top: 16rem;
 	margin-bottom: -9.5em;
 }
 
@@ -45,7 +45,21 @@ h6 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	margin-top: 9rem;
-	margin: auto;
+	margin-top: 12rem;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.imgfix{
+    border-radius: 1rem;
+    
+
+}
+
+.playmode{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+	margin-top: 1rem;
+ 
 }

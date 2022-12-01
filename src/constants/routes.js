@@ -92,7 +92,7 @@ const SECURED_ROUTES = [
 	{
 		component: WatchParty,
 		exact: true,
-		path: '/watchParty',
+		path: '/watchParty/:id?',
 		showOnMenubar: false,
 		title: 'Watch Party'
 	},
