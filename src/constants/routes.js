@@ -15,6 +15,7 @@ import { getValueFromStorage } from '../utils';
 
 const Home = lazy(() => import('../pages/home'));
 const WatchList = lazy(() => import('../pages/watchList'));
+const WatchParty = lazy(() => import('../pages/watchParty'));
 const SearchMovie = lazy(() => import('../pages/searchMovie'));
 const DetailScreen = lazy(() => import('../pages/detailScreen'));
 const MoreLikeThis = lazy(() => import('../pages/moreLikeThis'));
@@ -87,6 +88,13 @@ const SECURED_ROUTES = [
 		path: '/detailScreen/:id?',
 		showOnMenubar: false,
 		title: 'Movie details'
+	},
+	{
+		component: WatchParty,
+		exact: true,
+		path: '/watchParty/:id?',
+		showOnMenubar: false,
+		title: 'Watch Party'
 	},
 	{
 		component: SearchMovie,
