@@ -1,31 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Card as AntdCard } from 'antd';
 import { Button, Col, Input, Image, Row, Typography } from 'antd';
 
-import Context from '../../../context';
 import styles from './watchPartyContent.module.scss';
 import MovieImg from '../../../assets/images/second.png';
-import background from '../../../assets/images/second.png';
 
 const WatchPartyContent = ({ movieName }) => {
-	const isMobile = useContext(Context.DeviceContext);
-
 	return (
 		<>
 			<div className={styles.main}>
 				<Col flex={7}>
-					<div
-						style={{
-							backgroundImage: `url(${background})`,
-							height: isMobile ? '49.5rem' : '45rem',
-							opacity: isMobile ? '0.5' : '0.04'
-						}}></div>
+					<div className={styles.bgImage}></div>
 					<Row className={styles.content}>
 						<Col
 							className={styles.party}
 							lg={20}
-							md={25}
+							md={18}
 							sm={25}
 							xl={23}
 							xs={28}
@@ -37,33 +28,30 @@ const WatchPartyContent = ({ movieName }) => {
 						</Col>
 
 						<Col
+							className={styles.cardDesign}
 							lg={12}
-							md={12}
-							sm={14}
+							md={18}
+							sm={19}
 							xl={10}
-							xs={23}
+							xs={21}
 							xxl={20}>
 							<AntdCard
-								bodyStyle={{ padding: 0, marginRight: '1rem' }}
+								bodyStyle={{ padding: 0, marginLeft: '-50rem' }}
 								hoverable
-								cover={
-									<Image
-										className={styles.imgfix}
-										src={MovieImg}
-									/>
-								}></AntdCard>
+								cover={<Image src={MovieImg} />}></AntdCard>
 						</Col>
 					</Row>
 				</Col>
+
 				<Row className={styles.rightchild}>
-					<Col flex={3}>
+					<Col flex={2}>
 						<Col
 							className={styles.code}
 							lg={29}
-							md={20}
+							md={18}
 							sm={25}
 							xl={28}
-							xs={28}
+							xs={15}
 							xxl={23}>
 							<Typography.Title level={3}>
 								Let's get the Party Started
@@ -116,6 +104,7 @@ const WatchPartyContent = ({ movieName }) => {
 								}}>
 								Create Watch Party
 							</Button>
+
 							<div className={styles.playmode}>
 								<Button
 									type="primary"
@@ -127,6 +116,7 @@ const WatchPartyContent = ({ movieName }) => {
 									}}>
 									Play
 								</Button>
+
 								<Button
 									type="primary"
 									style={{
@@ -149,7 +139,7 @@ const WatchPartyContent = ({ movieName }) => {
 							<Typography.Paragraph
 								level={6}
 								style={{
-									marginTop: '6.7rem'
+									marginTop: '3rem'
 								}}>
 								By viewing, you agree to our Terms of use and
 								our Watch Party Guidelines.
