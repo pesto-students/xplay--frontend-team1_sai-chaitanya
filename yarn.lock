@@ -1677,7 +1677,7 @@
     "classnames" "^2.3.2"
     "rc-util" "^5.24.4"
 
-"@reduxjs/toolkit@^1.9.1":
+"@reduxjs/toolkit@^1.9.0":
   "integrity" "sha512-HikrdY+IDgRfRYlCTGUQaiCxxDDgM1mQrRbZ6S1HFZX5ZYuJ4o8EstNmhTwHdPl2rTmLxzwSu0b3AyeyTlR+RA=="
   "resolved" "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.9.1.tgz"
   "version" "1.9.1"
@@ -8278,13 +8278,6 @@
     "raf" "^3.4.1"
     "regenerator-runtime" "^0.13.9"
     "whatwg-fetch" "^3.6.2"
-
-"react-blur@^1.1.1":
-  "integrity" "sha512-v/hKdKVv3ioZeR4KKcHqtFRGp0anNVzEbpCgzed1oNKwBMg85P+jjHQ/G4H8kjdUZ+n0RHrBPrpJ2G/HcDWx4w=="
-  "resolved" "https://registry.npmjs.org/react-blur/-/react-blur-1.1.1.tgz"
-  "version" "1.1.1"
-  dependencies:
-    "prop-types" "^15.8.1"
 
 "react-dev-utils@^12.0.1":
   "integrity" "sha512-84Ivxmr17KjUupyqzFode6xKhjwuEJDROWKJy/BthkL7Wn6NJ8h4WE6k/exAv6ImS+0oZLRRW5j/aINMHyeGeQ=="
