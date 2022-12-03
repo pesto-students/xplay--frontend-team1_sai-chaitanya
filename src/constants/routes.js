@@ -17,6 +17,7 @@ const Home = lazy(() => import('../pages/home'));
 const WatchList = lazy(() => import('../pages/watchList'));
 const WatchParty = lazy(() => import('../pages/watchParty'));
 const SearchMovie = lazy(() => import('../pages/searchMovie'));
+const PlayerScreen = lazy(() => import('../pages/playerScreen'));
 const DetailScreen = lazy(() => import('../pages/detailScreen'));
 const MoreLikeThis = lazy(() => import('../pages/moreLikeThis'));
 const LatestOnXplay = lazy(() => import('../pages/latestOnXplay'));
@@ -29,8 +30,8 @@ const ROUTES = {
 	HOME: '/home',
 	LOGIN: '/login',
 	SIGN_UP: '/signup',
-	LOGIN_REDIRECT_PATH: process.env.REACT_APP_OKTA_CALLBACK_ROUTE
-		?? '/login/callback'
+	LOGIN_REDIRECT_PATH:
+		process.env.REACT_APP_OKTA_CALLBACK_ROUTE ?? '/login/callback'
 };
 
 const SECURED_ROUTES = [
@@ -95,6 +96,13 @@ const SECURED_ROUTES = [
 		path: '/watchParty/:id?',
 		showOnMenubar: false,
 		title: 'Watch Party'
+	},
+	{
+		component: PlayerScreen,
+		exact: true,
+		path: '/playerScreen',
+		showOnMenubar: false,
+		title: 'Movie details'
 	},
 	{
 		component: SearchMovie,
