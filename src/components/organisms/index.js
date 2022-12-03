@@ -3,6 +3,7 @@ import Modal from './modal';
 import TabBar from './tabBar';
 import Sidebar from './sidebar';
 import MovieList from './movieList';
+import MovieCover from './movieCover';
 import SearchField from './searchField';
 import PublicHeader from './publicHeader';
 import WatchPartyContent from './watchPartyContent';
@@ -15,6 +16,7 @@ export default {
 	TabBar,
 	Sidebar,
 	MovieList,
+	MovieCover,
 	SearchField,
 	PublicHeader,
 	WatchPartyContent,

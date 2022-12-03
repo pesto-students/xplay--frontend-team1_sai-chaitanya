@@ -18,9 +18,11 @@ function WatchList() {
 	};
 
 	useEffect(() => {
-		dispatch(movieThunk.getMoviesByTypeThunk({
-			type: 'latest'
-		}));
+		dispatch(
+			movieThunk.getMoviesByTypeThunk({
+				type: 'latest'
+			})
+		);
 	}, []);
 
 	return (

@@ -1,0 +1,91 @@
+@import '../../../styles/colors.scss';
+
+.container {
+	padding: 2rem;
+	background-size: cover;
+
+	:global {
+        .ant-btn {
+            border: none;
+        }
+        .ant-btn.ant-btn-primary {
+            color: #000;
+        }
+
+		.ant-typography.movieCoverTitle {
+			margin-bottom: auto;
+		}
+	}
+
+    .addToWatchlistButton {
+        background-color: transparent;
+        color: #fff;
+        flex: 1 1 0;
+    }
+
+    .playButton {
+        background-color: $primary-color;
+        flex: 1 1 0;
+    }
+
+    .movieCoverTitle {
+        margin-bottom: auto;
+    }
+
+    .watchWithFriendsButton {
+        background-color: #fff;
+        flex: 1 1 0;
+    }
+}
+
+.movieCoverActions {
+    margin: 2rem auto;
+
+    :global {
+        .ant-col {
+            display: flex;
+            flex-wrap: wrap-reverse;
+            gap: 0.8rem;
+        }
+    }
+}
+
+.movieCoverDescription {
+    text-align: justify;
+}
+
+.movieCoverTagline {
+    font-size: smaller;
+}
+
+.movieCoverTitle {
+	color: '#fff';
+	text-transform: capitalize;
+}
+
+.movieCoverInfo {
+    font-size: smaller;
+    margin: 2rem auto;
+    text-transform: uppercase;
+}
+
+.mobileContainer {
+    padding: 1.2rem;
+    text-align: center;
+    
+    .movieCoverActions {
+        margin: 0.8rem auto;
+    }
+
+    .movieCoverInfo {
+        margin: 1.2rem auto;
+    }
+
+    .movieCoverTitle {
+        margin-bottom: auto;
+    }
+}
+
+.promotionalInfo {
+    margin-bottom: 6rem;
+}
