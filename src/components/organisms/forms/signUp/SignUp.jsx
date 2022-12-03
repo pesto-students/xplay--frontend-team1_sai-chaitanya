@@ -8,7 +8,7 @@ import hooks from '../../../../hooks';
 import styles from './signup.module.scss';
 import Molecules from '../../../molecules';
 import PublicHeader from '../../publicHeader';
-import { userThunk } from '../../../../redux';
+import { resetState, userThunk } from '../../../../redux';
 
 const SignUp = () => {
 	const [form] = useForm();
@@ -20,6 +20,7 @@ const SignUp = () => {
 
 	useEffect(() => {
 		if (signUpSuccess) {
+			dispatch(resetState());
 			history.push('/login');
 			notify(
 				'User created successfully, please login with your creadentials now!',

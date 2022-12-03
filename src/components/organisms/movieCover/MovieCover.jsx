@@ -39,11 +39,7 @@ const MovieCover = ({
                     </Typography.Text>
                 </Col>
             </Row>
-            <Row className={
-                [styles.movieCoverInfo,
-                !isPromotional && styles.promotionalInfo
-                ].filter(Boolean)
-            }>
+            <Row className={styles.movieCoverInfo}>
                 <Col
                     lg={12}
                     md={16}

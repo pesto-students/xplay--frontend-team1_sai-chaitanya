@@ -1,8 +1,10 @@
 @import '../../../styles/colors.scss';
 
 .container {
+    background-size: cover;
+    height: 64vh;
 	padding: 2rem;
-	background-size: cover;
+    position: relative;
 
 	:global {
         .ant-btn {
@@ -39,7 +41,9 @@
 }
 
 .movieCoverActions {
+    bottom: 0;
     margin: 2rem auto;
+    position: absolute;
 
     :global {
         .ant-col {
@@ -70,6 +74,7 @@
 }
 
 .mobileContainer {
+    height: 32vh;
     padding: 1.2rem;
     text-align: center;
     
@@ -84,8 +89,4 @@
     .movieCoverTitle {
         margin-bottom: auto;
     }
-}
-
-.promotionalInfo {
-    margin-bottom: 6rem;
 }

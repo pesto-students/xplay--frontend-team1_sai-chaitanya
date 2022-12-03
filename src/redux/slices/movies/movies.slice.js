@@ -11,6 +11,7 @@ import {
 } from './helpers';
 import { SLICES } from '../../constants';
 import { movieThunk } from '../../thunks';
+import { resetState } from '../../actions';
 
 const {
 	searchMoviesByTitle,
@@ -26,6 +27,7 @@ const moviesSlice = createSlice({
 	initialState: INITIAL_MOVIES_STATE,
 	extraReducers: (builder) => {
 		builder
+			.addCase(resetState, () => INITIAL_MOVIES_STATE)
 			.addCase(searchMoviesByTitle.fulfilled, (state, action) => {
 				setSearchResults(state, action, true);
 			})

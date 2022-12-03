@@ -7,7 +7,6 @@ import MovieCover from './movieCover';
 import SearchField from './searchField';
 import PublicHeader from './publicHeader';
 import WatchPartyContent from './watchPartyContent';
-import PlayerScreenContent from './playerScreenContent';
 import MovieDetailsContent from './movieDetailsContent';
 
 export default {
@@ -20,6 +19,5 @@ export default {
 	SearchField,
 	PublicHeader,
 	WatchPartyContent,
-	PlayerScreenContent,
 	MovieDetailsContent
 };

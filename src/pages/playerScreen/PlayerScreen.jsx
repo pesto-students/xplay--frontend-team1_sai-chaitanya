@@ -1,48 +1,59 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactPlayer from 'react-player';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
+import Context from '../../context';
+import { movieThunk } from '../../redux';
 import Components from '../../components';
-import { movieService } from '../../services';
-import styles from './playerScreen.module.scss';
 
 const PlayerScreen = () => {
-	const [playerScreenMovieList, setplayerScreenMovieList] = useState([]);
+	const { id } = useParams();
+	const history = useHistory();
+	const dispatch = useDispatch();
+	const isMobile = useContext(Context.DeviceContext);
 
-	const getplayerScreenMovieList = async () => {
-		try {
-			const response = await movieService._getMoviesByType(
-				'featured',
-				10
-			);
-			setplayerScreenMovieList(response.data?.data);
-		} catch (err) {
-			console.error(err);
-		}
+	const { selectedMovie, moviesByGenre } = useSelector((state) => state?.movies);
+
+	const handleMovieClick = (movieId) => {
+		history.push(`/detailScreen/${movieId}`);
+	};
+
+	const handleNavigation = (path) => {
+		history.push(path);
 	};
 
 	useEffect(() => {
-		getplayerScreenMovieList();
-	}, []);
+		dispatch(movieThunk.getMoviesByGenreThunk({
+			genre: selectedMovie.genre
+		}));
+	}, [selectedMovie.genre]);
+
+	useEffect(() => {
+		dispatch(movieThunk.getMovieDetailsByIdThunk(id));
+	}, [id]);
 
 	return (
 		<>
-			<div className={styles.playerWrapper}>
-				<ReactPlayer
-					url="https://www.youtube.com/watch?v=-X4ikwUwxoE"
-					className={styles.reactPlayer}
-					controls
-					width="100%"
-					height="85%"
-				/>
-			</div>
-			<Components.PlayerScreenContent
-				castDetails="Lorem ipsum(Black Widow), sit amet(Wolverine), Tushar(XMan), Suresh(SpiderMan)"
-				directorDetails="Suresh Kumar"
-				story="A Mythic and emotionally charged hero journey, Dune tells the story of Paul Atrides, a brilliant and gifted young man born into a great destiny beyond
-				his understanding, who must travel to the most dangerous planet in the universe to ensure the future of his family and his people... "></Components.PlayerScreenContent>
+			<ReactPlayer
+				controls
+				height={isMobile ? '32vh' : '64vh'}
+				// light
+				width="100%"
+				url={selectedMovie?.url}
+			/>
+			<Components.MovieDetailsContent
+				castDetails={selectedMovie?.metadata?.cast ?? ''}
+				directorDetails={selectedMovie?.metadata?.director ?? ''}
+				story={selectedMovie?.description ?? ''}
+			/>
 			<Components.MovieList
 				isSlider={true}
-				movieList={playerScreenMovieList}
+				movieList={moviesByGenre}
+				onMovieClick={handleMovieClick}
+				onLinkClick={() =>
+					handleNavigation(`/moreLikeThis/${selectedMovie?.genre ?? 'comedy'}`)
+				}
 				title="More Like This"
 			/>
 		</>
