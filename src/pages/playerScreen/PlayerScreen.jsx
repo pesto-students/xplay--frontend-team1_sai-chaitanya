@@ -10,7 +10,7 @@ const PlayerScreen = () => {
 
 	const getplayerScreenMovieList = async () => {
 		try {
-			const response = await movieService._getMovieListByType(
+			const response = await movieService._getMoviesByType(
 				'featured',
 				10
 			);

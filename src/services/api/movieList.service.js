@@ -1,6 +1,10 @@
 import { http, appendUrlParams } from './utils';
 import { ENDPOINTS } from '../../constants';
 
+
+const _createWatchParty = (watchPartyObject) => http.post(
+	ENDPOINTS.WATCH_PARTY, watchPartyObject);
+
 /**
  * @function _getMovieDetailsById
  * @param {String} id object id of a movie
@@ -59,6 +63,7 @@ const _searchMoviesByTitle = ({ title, query }) => {
 
 export {
 	_getMoviesByType,
+	_createWatchParty,
 	_getPromotedMovie,
 	_getMoviesByGenre,
 	_getMovieDetailsById,

@@ -32,7 +32,15 @@ const DetailScreen = () => {
 
 	return (
 		<>
-			<Components.MovieCover movieDetails={selectedMovie ?? {}} />
+			<Components.MovieCover
+				movieDetails={selectedMovie ?? {}}
+				actions={{
+					onPlayClick: () => handleNavigation(`/playerScreen`),
+					onWatchWithFriendsClick: () =>
+						handleNavigation(`/watchParty/${selectedMovie?._id}`),
+					onAddToWatchlistClick: () => { },
+				}}
+			/>
 			<Components.MovieDetailsContent
 				castDetails={selectedMovie?.metadata?.cast ?? ''}
 				directorDetails={selectedMovie?.metadata?.director ?? ''}
