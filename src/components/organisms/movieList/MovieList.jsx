@@ -23,12 +23,7 @@ const MovieList = ({
 			{((isMobile && isSlider) || !isMobile || showTitleOnAllScreens) && !!movieList.length && (
 				<Row className={styles.titleRow}>
 					<Col
-						lg={23}
-						md={20}
-						sm={20}
-						xl={23}
-						xs={20}
-						xxl={23}>
+						span={22}>
 						<Typography.Title
 							className={styles.movieListTitle}
 							level={isSlider ? 5 : 4}
@@ -40,12 +35,7 @@ const MovieList = ({
 					</Col>
 					{isSlider && (
 						<Col
-							lg={1}
-							md={4}
-							sm={4}
-							xl={1}
-							xs={4}
-							xxl={1}>
+							span={2}>
 							<Typography.Link onClick={onLinkClick}>
 								See all
 							</Typography.Link>

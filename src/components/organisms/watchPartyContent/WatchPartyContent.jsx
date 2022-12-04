@@ -11,9 +11,8 @@ const { Sider, Content } = Layout;
 const WatchPartyContent = ({ movieName }) => {
 	const isMobile = useContext(context.DeviceContext);
 	const [isShown, setIsShown] = useState(false);
-	const handleClick = (event) => {
-		setIsShown((current) => !current);
-	};
+	const handleClick = () => setIsShown((current) => !current);
+
 	return (
 		<>
 			<Content>
@@ -75,7 +74,7 @@ const WatchPartyContent = ({ movieName }) => {
 									styles[isMobile ? 'codemob' : 'code']
 								}>
 								<Typography.Title level={3}>
-									Let's get the Party Started
+									Let&#39;s get the Party Started
 								</Typography.Title>
 
 								<Typography.Paragraph level={4}>
@@ -166,7 +165,9 @@ const WatchPartyContent = ({ movieName }) => {
 };
 
 WatchPartyContent.propTypes = {
-	movieName: PropTypes.string.isRequired
+	actions: PropTypes.object.isRequired,
+	movieName: PropTypes.string.isRequired,
+	OnCreateWatchParty: PropTypes.func.isRequired
 };
 
 export default WatchPartyContent;

@@ -100,7 +100,7 @@ const SECURED_ROUTES = [
 	{
 		component: PlayerScreen,
 		exact: true,
-		path: '/playerScreen',
+		path: '/playerScreen/:id?',
 		showOnMenubar: false,
 		title: 'Movie details'
 	},
