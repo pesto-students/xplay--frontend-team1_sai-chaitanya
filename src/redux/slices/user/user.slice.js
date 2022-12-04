@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { SLICES } from '../../constants';
 import { userThunk } from '../../thunks';
 import { resetState } from '../../actions';
-import { INITIAL_USER_STATE, setUserResponse } from './helpers';
+import { INITIAL_USER_STATE, setUserResponse, setUsers } from './helpers';
 
-const { createUserThunk } = userThunk;
+const { createUserThunk, getUsersThunk } = userThunk;
 
 const userSlice = createSlice({
     name: SLICES.USER,
@@ -22,6 +22,12 @@ const userSlice = createSlice({
             })
             .addCase(createUserThunk.rejected, (state, action) => {
                 setUserResponse(state, action);
+            })
+            .addCase(getUsersThunk.fulfilled, (state, action) => {
+                setUsers(state, action, true);
+            })
+            .addCase(getUsersThunk.rejected, (state, action) => {
+                setUsers(state, action, false);
             });
     }
 });

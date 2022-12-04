@@ -1,127 +1,114 @@
 @import '../../../styles/colors.scss';
 
-.bgImage {
-	background-image: url('../../../assets/images/second.png');
-	width: 100%;
+.form {
+	:global {
+		.ant-btn-primary {
+			border-color: black;
+
+			&:hover,
+			&:focus {
+				border-color: black;
+			}
+		}
+
+		.ant-form-item {
+			margin-bottom: 0.4rem;
+			width: 100%;
+		}
+
+		.ant-input-affix-wrapper {
+			background: $input-bg-color;
+		}
+	}
+}
+
+.buttonPrimary {
+	background: $primary-color;
+	border-radius: 0.4rem;
+}
+
+.cancelActions {
+	justify-content: center;
+}
+
+.container {
+	display: flex;
+	align-items: center;
 	height: 100vh;
-	opacity: 0.1;
 }
 
-.bgImagemob {
-	background-image: url('../../../assets/images/second.png');
-	width: 100%;
-	height: 80vh;
-	opacity: 0.4;
+.mobileContainer {
+	align-items: normal;
+	margin: 0 1.2rem;
 }
 
-.rightchild {
-	background-color: #212c2c;
+.infoCol {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	:global {
+		h3.ant-typography {
+			margin-top: inherit;
+			text-transform: capitalize;
+		}
+	}
 }
 
-.menustyle {
-	overflow: auto;
-	height: 100vh;
-	right: 0;
-	background-color: #212c2c;
-	z-index: 3;
-	border-right: 0;
+.infoContainer {
+	height: 100%;
+	padding-left: 1.6rem;
+
+	:global {
+		.ant-row {
+			align-items: center;
+			height: inherit;
+		}
+	}
 }
 
-.menustylemob {
-	overflow: auto;
-	height: 50vh;
-	width: 80wh;
-	position: fixed;
+.infoContainerMobile {
+	height: auto;
+}
+
+.infoContainer::before, .infoContainerMobile::before {
 	bottom: 0;
+	background-image: url('https://res.cloudinary.com/tusharwalzade216/image/upload/v1669043796/movies/fifth.jpg');
+	background-size: cover;
+	content: '';
+	left: 0;
+	opacity: 0.5;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.movieCoverTagline {
+	font-size: smaller;
+}
+
+.partyActions {
+	flex-wrap: inherit;
+	gap: 0.4rem;
+	justify-content: space-evenly;
+
+	.buttonPrimary {
+		flex: 1 1 0;
+	}
+}
+
+.sidebar {
+	display: flex;
 	background-color: #212c2c;
-	z-index: 3;
-	border-right: 0;
+	align-items: center;
+	height: 100%;
 }
 
-.content {
-	display: flex;
-	flex-direction: row;
-	margin-top: -52rem;
-}
-
-.party {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.partymob {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-top: 10rem;
-}
-
-.header {
-	color: lightgray;
-	font-weight: 500;
-}
-
-.name {
-	font-size: 1.8rem;
-	color: white;
-	font-weight: 500;
-	margin-top: 0.5rem;
-}
-
-.cardDesign {
-	margin-left: auto;
-	margin-top: 20rem;
-	height: 20rem;
-	width: 20rem;
-}
-
-.cardDesignmob {
-	margin-top: 14rem;
-}
-
-.code {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-top: 40%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.codemob {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-top: 8%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.playmode {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	margin-top: 1rem;
-}
-
-.playbtn {
-	margin-top: '0.3125rem';
-	background: #ff671a;
-	margin-right: '1.2rem';
-	width: 5.2rem;
-}
-
-.playlaterbtn {
-	margin-top: '0.3125rem';
-	margin-left: 2rem;
-	background: #ff671a;
-}
-
-.parawarn {
-	margin-top: 10rem;
-}
-
-.parawarnmob {
-	margin-top: 0rem;
+.sidebarContent {
+	margin: 0.8rem;
+	
+	.otp {
+		margin: 1.2em;
+		text-align: center;
+	}
 }
