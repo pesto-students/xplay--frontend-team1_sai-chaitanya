@@ -1,4 +1,5 @@
 const INITIAL_MOVIES_STATE = {
+    loading: false,
     latestMovies: [],
     promotedMovie: {},
     selectedMovie: {},
@@ -53,6 +54,7 @@ const setSelectedMovie = (state, action, isSuccess) => {
 };
 
 const setWatchPartyResponse = (state, action, isSuccess) => {
+    state.loading = false;
     state.watchPartyResponse = isSuccess ? action.payload?.data
         : INITIAL_MOVIES_STATE.watchPartyResponse;
 };

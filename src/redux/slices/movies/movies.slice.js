@@ -58,6 +58,9 @@ const moviesSlice = createSlice({
 			.addCase(getMoviesByGenreThunk.rejected, (state, action) => {
 				setMoviesByGenre(state, action, false);
 			})
+			.addCase(createWatchPartyThunk.pending, (state) => {
+				state.loading = true;
+			})
 			.addCase(createWatchPartyThunk.fulfilled, (state, action) => {
 				setWatchPartyResponse(state, action, true);
 			})

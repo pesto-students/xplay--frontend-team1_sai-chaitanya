@@ -1,7 +1,11 @@
 import { http, appendUrlParams } from './utils';
 import { ENDPOINTS } from '../../constants';
 
-
+/**
+ * @function _createWatchParty
+ * @param {Object} watchPartyObject object of a movie
+ * @returns promise
+ */
 const _createWatchParty = (watchPartyObject) => http.post(
 	ENDPOINTS.WATCH_PARTY, watchPartyObject);
 

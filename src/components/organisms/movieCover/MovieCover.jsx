@@ -32,11 +32,11 @@ const MovieCover = ({
                         level={3}>
                         {movieDetails?.title}
                     </Typography.Title>
-                    <Typography.Text
+                    {movieDetails?.tagLine ? <Typography.Text
                         className={styles.movieCoverTagline}
                         strong>
                         {movieDetails?.tagLine}
-                    </Typography.Text>
+                    </Typography.Text> : null}
                 </Col>
             </Row>
             <Row className={styles.movieCoverInfo}>
@@ -74,13 +74,7 @@ const MovieCover = ({
                 : null
             }
             <Row className={styles.movieCoverActions}>
-                <Col
-                    lg={12}
-                    md={24}
-                    sm={24}
-                    xl={12}
-                    xs={24}
-                    xxl={12}>
+                <Col>
                     {actions?.onPlayClick ? <Button
                         className={styles.playButton}
                         htmlType="button"
