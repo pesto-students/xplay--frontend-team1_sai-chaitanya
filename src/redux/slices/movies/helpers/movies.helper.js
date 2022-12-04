@@ -4,7 +4,8 @@ const INITIAL_MOVIES_STATE = {
     selectedMovie: {},
     moviesByGenre: [],
     searchResults: [],
-    featuredMovies: []
+    featuredMovies: [],
+    watchPartyResponse: {},
 };
 
 const setFeaturedMovies = (state, action, isSuccess) => {
@@ -31,7 +32,7 @@ const setMoviesByType = (state, action, isSuccess) => {
     functionToCall(state, action, isSuccess);
 };
 
-const setPromotedMovie= (state, action, isSuccess) => {
+const setPromotedMovie = (state, action, isSuccess) => {
     state.promotedMovie = isSuccess ? action.payload?.data
         : INITIAL_MOVIES_STATE.promotedMovie;
 };
@@ -51,11 +52,17 @@ const setSelectedMovie = (state, action, isSuccess) => {
         : INITIAL_MOVIES_STATE.selectedMovie;
 };
 
+const setWatchPartyResponse = (state, action, isSuccess) => {
+    state.watchPartyResponse = isSuccess ? action.payload?.data
+        : INITIAL_MOVIES_STATE.watchPartyResponse;
+};
+
 export {
     setMoviesByType,
     setMoviesByGenre,
     setPromotedMovie,
     setSearchResults,
     setSelectedMovie,
-    INITIAL_MOVIES_STATE
+    INITIAL_MOVIES_STATE,
+    setWatchPartyResponse
 };

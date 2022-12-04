@@ -6,7 +6,8 @@ import { Button, Col, Input, Image, Row, Typography } from 'antd';
 import styles from './watchPartyContent.module.scss';
 import MovieImg from '../../../assets/images/second.png';
 
-const WatchPartyContent = ({ movieName }) => {
+const WatchPartyContent = ({ actions, movieName, OnCreateWatchParty }) => {
+
 	return (
 		<>
 			<div className={styles.main}>
@@ -54,7 +55,7 @@ const WatchPartyContent = ({ movieName }) => {
 							xs={15}
 							xxl={23}>
 							<Typography.Title level={3}>
-								Let's get the Party Started
+								{"Let's get the Party Started"}
 							</Typography.Title>
 
 							<Typography.Paragraph level={4}>
@@ -98,6 +99,7 @@ const WatchPartyContent = ({ movieName }) => {
 							/>
 
 							<Button
+								onClick={OnCreateWatchParty}
 								type="primary"
 								style={{
 									marginTop: '0.3125rem'
@@ -106,7 +108,8 @@ const WatchPartyContent = ({ movieName }) => {
 							</Button>
 
 							<div className={styles.playmode}>
-								<Button
+								{actions?.onPlayClick ? <Button
+									onClick={actions?.onPlayClick}
 									type="primary"
 									style={{
 										marginTop: '0.3125rem',
@@ -115,16 +118,17 @@ const WatchPartyContent = ({ movieName }) => {
 										width: '5.2rem'
 									}}>
 									Play
-								</Button>
+								</Button> : null}
 
-								<Button
+								{actions?.onPlayLaterClick ? <Button
+									onClick={actions?.onPlayLaterClick}
 									type="primary"
 									style={{
 										marginTop: '0.3125rem',
 										background: '#FF671A'
 									}}>
 									Play Later
-								</Button>
+								</Button> : null}
 							</div>
 
 							<Typography.Link
@@ -153,7 +157,9 @@ const WatchPartyContent = ({ movieName }) => {
 };
 
 WatchPartyContent.propTypes = {
-	movieName: PropTypes.string.isRequired
+	actions: PropTypes.object.isRequired,
+	movieName: PropTypes.string.isRequired,
+	OnCreateWatchParty: PropTypes.func.isRequired
 };
 
 export default WatchPartyContent;

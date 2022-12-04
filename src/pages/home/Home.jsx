@@ -9,7 +9,11 @@ const Home = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
-	const { featuredMovies, latestMovies } = useSelector((state) => state?.movies);
+	const {
+		featuredMovies,
+		latestMovies,
+		promotedMovie
+	} = useSelector((state) => state?.movies);
 
 	const handleMovieClick = (movieId) => {
 		history.push(`/detailScreen/${movieId}`);
@@ -20,6 +24,7 @@ const Home = () => {
 	};
 
 	useEffect(() => {
+		dispatch(movieThunk.getPromotedMovieThunk());
 		dispatch(movieThunk.getMoviesByTypeThunk({
 			type: 'featured',
 			query: { limit: 10 }
@@ -32,6 +37,17 @@ const Home = () => {
 
 	return (
 		<>
+			<Components.MovieCover
+				actions={{
+					onPlayClick: () =>
+						handleNavigation(`/playerScreen/${promotedMovie?._id}`),
+					onWatchWithFriendsClick: () =>
+						handleNavigation(`/watchParty/${promotedMovie?._id}`),
+					onAddToWatchlistClick: () => { },
+				}}
+				isPromotional={true}
+				movieDetails={promotedMovie ?? {}}
+			/>
 			<Components.MovieList
 				isSlider={true}
 				movieList={latestMovies}

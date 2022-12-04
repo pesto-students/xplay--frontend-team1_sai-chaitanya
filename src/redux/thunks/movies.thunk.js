@@ -2,6 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { movieService } from '../../services';
 
+const createWatchPartyThunk = createAsyncThunk(
+    'movies/createWatchParty',
+    async (args) => await movieService._createWatchParty(args)
+        .then((response) => response?.data)
+        .catch((error) => error?.response?.data)
+);
+
 const getMoviesByTypeThunk = createAsyncThunk(
     'movies/getMoviesByType',
     async (args) => await movieService._getMoviesByType(args)
@@ -40,6 +47,7 @@ const searchMoviesByTitle = createAsyncThunk(
 export {
     searchMoviesByTitle,
     getMoviesByTypeThunk,
+    createWatchPartyThunk,
     getPromotedMovieThunk,
     getMoviesByGenreThunk,
     getMovieDetailsByIdThunk,
