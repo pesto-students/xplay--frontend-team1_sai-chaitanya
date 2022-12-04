@@ -1,153 +1,166 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card as AntdCard } from 'antd';
-import { Button, Col, Input, Image, Row, Typography } from 'antd';
+import { Button, Col, Input, Image, Row, Typography, Layout } from 'antd';
 
+import context from '../../../context';
 import styles from './watchPartyContent.module.scss';
 import MovieImg from '../../../assets/images/second.png';
 
+const { Sider, Content } = Layout;
 const WatchPartyContent = ({ movieName }) => {
+	const isMobile = useContext(context.DeviceContext);
+	const [isShown, setIsShown] = useState(false);
+	const handleClick = (event) => {
+		setIsShown((current) => !current);
+	};
 	return (
 		<>
-			<div className={styles.main}>
-				<Col flex={7}>
-					<div className={styles.bgImage}></div>
-					<Row className={styles.content}>
-						<Col
-							className={styles.party}
-							lg={20}
-							md={18}
-							sm={25}
-							xl={23}
-							xs={28}
-							xxl={30}>
-							<h6 className={styles.header}>
-								Create Watch Party
-							</h6>
-							<h1 className={styles.name}>{movieName}</h1>
-						</Col>
-
-						<Col
-							className={styles.cardDesign}
-							lg={12}
-							md={18}
-							sm={19}
-							xl={10}
-							xs={21}
-							xxl={20}>
-							<AntdCard
-								bodyStyle={{ padding: 0, marginLeft: '-50rem' }}
-								hoverable
-								cover={<Image src={MovieImg} />}></AntdCard>
-						</Col>
-					</Row>
-				</Col>
-
-				<Row className={styles.rightchild}>
-					<Col flex={2}>
-						<Col
-							className={styles.code}
-							lg={29}
-							md={18}
-							sm={25}
-							xl={28}
-							xs={15}
-							xxl={23}>
-							<Typography.Title level={3}>
-								Let's get the Party Started
-							</Typography.Title>
-
-							<Typography.Paragraph level={4}>
-								Watch with your friends and family.
-							</Typography.Paragraph>
-
-							<Typography.Paragraph level={6}>
-								Everyone must have Code or have purchased a
-								video.
-							</Typography.Paragraph>
-
-							<Typography
-								style={{
-									marginRight: 'auto',
-									fontSize: '1rem'
-								}}>
-								Chat name:
-							</Typography>
-
-							<Input
-								placeholder="Enter Name"
-								style={{
-									border: ' 0.025rem solid grey'
-								}}
-							/>
-
-							<Typography
-								style={{
-									marginRight: 'auto',
-									fontSize: '1rem',
-									marginTop: '1rem'
-								}}>
-								Chat OTP:
-							</Typography>
-
-							<Input
-								placeholder="Enter OTP"
-								style={{
-									border: ' 0.025rem solid grey'
-								}}
-							/>
-
-							<Button
-								type="primary"
-								style={{
-									marginTop: '0.3125rem'
-								}}>
-								Create Watch Party
-							</Button>
-
-							<div className={styles.playmode}>
-								<Button
-									type="primary"
-									style={{
-										marginTop: '0.3125rem',
-										background: '#FF671A',
-										marginRight: '1.2rem',
-										width: '5.2rem'
-									}}>
-									Play
-								</Button>
-
-								<Button
-									type="primary"
-									style={{
-										marginTop: '0.3125rem',
-										background: '#FF671A'
-									}}>
-									Play Later
-								</Button>
+			<Content>
+				<Row>
+					<Col
+						lg={18}
+						md={18}
+						sm={24}
+						xl={18}
+						xs={24}
+						xxl={18}>
+						<div
+							className={
+								styles[isMobile ? 'bgImagemob' : 'bgImage']
+							}></div>
+						<div className={styles.content}>
+							<div
+								className={
+									styles[isMobile ? 'partymob' : 'party']
+								}>
+								<h4 className={styles.header}>
+									Create Watch Party
+								</h4>
+								<h1 className={styles.name}>{movieName}</h1>
 							</div>
 
-							<Typography.Link
-								style={{
-									marginTop: '0.4rem',
-									marginLeft: 'auto',
-									marginRight: 'auto'
-								}}>
-								Cancel
-							</Typography.Link>
+							<div
+								className={
+									styles[
+										isMobile
+											? 'cardDesignmob'
+											: 'cardDesign'
+									]
+								}>
+								<AntdCard
+									bodyStyle={{
+										padding: 0
+									}}
+									hoverable
+									cover={<Image src={MovieImg} />}></AntdCard>
+							</div>
+						</div>
+					</Col>
 
-							<Typography.Paragraph
-								level={6}
-								style={{
-									marginTop: '3rem'
-								}}>
-								By viewing, you agree to our Terms of use and
-								our Watch Party Guidelines.
-							</Typography.Paragraph>
-						</Col>
+					<Col
+						lg={6}
+						md={6}
+						sm={24}
+						xl={6}
+						xs={24}
+						xxl={6}>
+						<Sider
+							width={'auto'}
+							className={
+								styles[isMobile ? 'menustylemob' : 'menustyle']
+							}>
+							<div
+								className={
+									styles[isMobile ? 'codemob' : 'code']
+								}>
+								<Typography.Title level={3}>
+									Let's get the Party Started
+								</Typography.Title>
+
+								<Typography.Paragraph level={4}>
+									Watch with your friends and family.
+								</Typography.Paragraph>
+
+								<Typography.Paragraph level={6}>
+									Everyone must have Code or have purchased a
+									video.
+								</Typography.Paragraph>
+
+								<Typography
+									style={{
+										marginRight: 'auto',
+										fontSize: '1rem'
+									}}>
+									Watch Party name:
+								</Typography>
+
+								<Input
+									placeholder="Enter Name"
+									style={{
+										border: ' 0.025rem solid grey'
+									}}
+								/>
+
+								<Input
+									placeholder="OTP"
+									style={{
+										border: ' 0.025rem solid grey',
+										marginTop: '1rem'
+									}}
+								/>
+
+								<Button
+									type="primary"
+									style={{
+										marginTop: '1rem'
+									}}
+									onClick={handleClick}>
+									Create Watch Party
+								</Button>
+
+								{isShown && (
+									<div className={styles.playmode}>
+										<Button
+											type="primary"
+											className={styles.playbtn}>
+											Play
+										</Button>
+
+										<Button
+											type="primary"
+											className={styles.playlaterbtn}>
+											Play Later
+										</Button>
+									</div>
+								)}
+
+								<Typography.Link
+									style={{
+										marginTop: '0.4rem',
+										marginLeft: 'auto',
+										marginRight: 'auto'
+									}}>
+									Cancel
+								</Typography.Link>
+
+								<Typography.Paragraph
+									level={6}
+									className={
+										styles[
+											isMobile
+												? 'parawarnmob'
+												: 'parawarn'
+										]
+									}>
+									By viewing, you agree to our Terms of use
+									and our Watch Party Guidelines.
+								</Typography.Paragraph>
+							</div>
+						</Sider>
 					</Col>
 				</Row>
-			</div>
+			</Content>
 		</>
 	);
 };

@@ -1,21 +1,41 @@
 @import '../../../styles/colors.scss';
 
-.main {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	height: 100%;
-}
-
 .bgImage {
 	background-image: url('../../../assets/images/second.png');
 	width: 100%;
-	height: 100%;
-	opacity: 0.04;
+	height: 100vh;
+	opacity: 0.1;
+}
+
+.bgImagemob {
+	background-image: url('../../../assets/images/second.png');
+	width: 100%;
+	height: 80vh;
+	opacity: 0.4;
 }
 
 .rightchild {
 	background-color: #212c2c;
+}
+
+.menustyle {
+	overflow: auto;
+	height: 100vh;
+	right: 0;
+	background-color: #212c2c;
+	z-index: 3;
+	border-right: 0;
+}
+
+.menustylemob {
+	overflow: auto;
+	height: 50vh;
+	width: 80wh;
+	position: fixed;
+	bottom: 0;
+	background-color: #212c2c;
+	z-index: 3;
+	border-right: 0;
 }
 
 .content {
@@ -30,33 +50,50 @@
 	justify-content: center;
 }
 
-.cardDesign{
-    margin-left: auto;
+.partymob {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-top: 10rem;
 }
 
 .header {
 	color: lightgray;
+	font-weight: 500;
 }
+
 .name {
 	font-size: 1.8rem;
 	color: white;
 	font-weight: 500;
-}
-h1 {
-	margin-top: 5.2rem;
-	font-weight: 500;
+	margin-top: 0.5rem;
 }
 
-h6 {
-	margin-top: 16rem;
-	margin-bottom: -9.5em;
+.cardDesign {
+	margin-left: auto;
+	margin-top: 20rem;
+	height: 20rem;
+	width: 20rem;
+}
+
+.cardDesignmob {
+	margin-top: 14rem;
 }
 
 .code {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-top: 12rem;
+	margin-top: 40%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.codemob {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-top: 8%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -66,4 +103,25 @@ h6 {
 	flex-direction: row;
 	justify-content: center;
 	margin-top: 1rem;
+}
+
+.playbtn {
+	margin-top: '0.3125rem';
+	background: #ff671a;
+	margin-right: '1.2rem';
+	width: 5.2rem;
+}
+
+.playlaterbtn {
+	margin-top: '0.3125rem';
+	margin-left: 2rem;
+	background: #ff671a;
+}
+
+.parawarn {
+	margin-top: 10rem;
+}
+
+.parawarnmob {
+	margin-top: 0rem;
 }
