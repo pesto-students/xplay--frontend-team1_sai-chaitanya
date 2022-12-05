@@ -1,5 +1,8 @@
-import DeviceContext from './deviceContext.js';
+import DeviceContext from './device.context';
+import SocketContext, { socket } from './socket.context';
 
 export default {
-	DeviceContext
+	socket,
+	DeviceContext,
+	SocketContext
 };

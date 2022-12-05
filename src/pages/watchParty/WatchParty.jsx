@@ -30,7 +30,7 @@ const WatchParty = () => {
 	};
 
 	const handleMovieClick = () => {
-		history.push(`/playerScreen/${id}`);
+		history.push(`/playerScreen/${id}/${watchPartyResponse?.partyId}`);
 	};
 
 	const handleOnCreateWatchParty = (watchPartyName) => {
@@ -48,7 +48,7 @@ const WatchParty = () => {
 		dispatch(userThunk.getUsersThunk());
 
 		return () => {
-			dispatch(resetState())
+			dispatch(resetState());
 		}
 	}, []);
 
