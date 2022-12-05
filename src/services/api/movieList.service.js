@@ -35,14 +35,15 @@ const _getMoviesByType = ({ type, query }) => {
  * @function _getMoviesByGenre
  * @param {Object} { 
  * 		genre: string, 
+ * 		id: string, // to exclude the selected movie
  * 		query: { limit: number, offset: number }
  * } 
  * @returns promise
  */
-const _getMoviesByGenre = ({ genre, query }) => {
+const _getMoviesByGenre = ({ genre, id = '', query }) => {
 	const params = appendUrlParams(query);
 	return http.get(
-		`${ENDPOINTS.MOVIE_LIST_BY_GENRE}/${genre}${params}`
+		`${ENDPOINTS.MOVIE_LIST_BY_GENRE}/${genre}/${id}${params}`
 	);
 };
 
