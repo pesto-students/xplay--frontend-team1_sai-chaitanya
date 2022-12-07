@@ -1,10 +1,46 @@
-# Getting Started with Create React App
+# XPlay
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+XPlay is a platform to watch interactive movies and enjoy watch parties across friends.
 
-## Available Scripts
+It is designed to attract various users from the video game and movie industry. XPlay is a platform where one or more viewers can interact with the film and influence the events that unfold in the film.
+
+XPlay allows users to watch interactive movies on Smart Devices, with ease.
+
+## Who is this for?
+
+All the users from OTT platform and gaming industry who want to be able to interact with the movies/ alter what they are watching on their Smart devices connected to the internet.
+
+## How do they Benefit?
+
+XPlay is a platform where viewers can interact with the film and influence the events that unfold in the film.
+
+## How is this different?
+
+In a regular movie/cinematic experience, the viewer lacks the option to alter events unfolding within the film. In video games, the player is given the freedom to interact with the game and alter the storyline.
+
+Interactive movies are a combination of both cinematic experience and altering the storyline as per the user's choice.
+
+The goal of XPlay is to give the viewer the possibility to alter the story, while still enjoying a cinematic experience.
+
+## Live Link
+
+[XPlay - Watch interactive movies](https://extraordinary-puppy-70b3a7.netlify.app/)
+
+#### Guest Login -
+
+guest@xplay.com : Secure123
+
+## Usage
+
+This project has a Node JS backend located here - https://github.com/pesto-students/xplay--backend-team1_sai-chaitanya
+
+Running this project locally is very easy and quick, just follow the below steps -
 
 In the project directory, you can run:
+
+### `yarn install`
+
+Installs the required dependencies
 
 ### `yarn start`
 
@@ -27,44 +63,76 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+***NOTE: Please checkout develop branch to run locally.***
 
-### `yarn eject`
+## System Requirements
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Following system requirements need to be met in order for this application to run -
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   Node.js v16.0 or later
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+-   Any common desktop OS including MacOS, Windows, and Linux is supported
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Environment
 
-## Learn More
+Following environment variables need to be set for the application to run -
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   `REACT_APP_API_BASE_URL`: API Server URL
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   `REACT_APP_OKTA_LOGIN_REDIRECT_PATH`: Login redirect URL which is configured on Okta App
 
-### Code Splitting
+-   `REACT_APP_OKTA_CLIENT_ID`: Client ID of an Okta App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+-   `REACT_APP_OKTA_ISSUER`: Issuer URL generated for an Okta App
 
-### Analyzing the Bundle Size
+-   `REACT_APP_OKTA_ORG_URL`: Org URL generated for an Okta App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-   `REACT_APP_OKTA_SCOPES`: Optional, the scopes for the Okta API response
 
-### Making a Progressive Web App
+-   `REACT_APP_SENTRY_DSN`: A Sentry DSN for error logging
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-   `REACT_APP_SOCKET_URL`: Socket Server URL
 
-### Advanced Configuration
+***NOTE: .env-sample in project root also has complete list of environment variables used.***
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Designs
 
-### Deployment
+### HLD:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+-   [XPlay HLD on Miro](https://miro.com/app/board/uXjVPI_6KK8=/)
 
-### `yarn build` fails to minify
+### PRD:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   [XPlay PRD on Slite](https://tusharwalzade.slite.page/p/OfXnNzLq0T3ct2/XPlay-PRD)
+
+### Wireframes:
+
+-   [XPlay Wireframes for Desktop - Figma](https://www.figma.com/file/n1vnT5S3d5UBiqxmmzrP4B/XPlay?node-id=0%3A1)
+
+-   [XPlay Wireframes for Mobile - Figma](https://www.figma.com/file/n1vnT5S3d5UBiqxmmzrP4B/XPlay?node-id=228%3A390)
+
+## Tech Stack
+
+-   Frontend - React, Redux
+
+-   Backend - NodeJS, Express, Socket.io
+
+-   Deployment - Netlify, Vercel, CI/CD
+
+-   Database - Mongo DB
+
+-   Authentication - Okta
+
+-   Logging - Sentry
+
+-   Tools - Version Control System (GIT), Github, Cloudinary
+
+## Developers
+
+-   [Tushar Walzade](https://github.com/tusharwalzade216)
+
+-   [Suresh Kumar](https://github.com/sureshmaverick)
+
+## Credits/ Guidence
+
+-   [Sai Chaitanya Ramineni](https://github.com/sairamin)
