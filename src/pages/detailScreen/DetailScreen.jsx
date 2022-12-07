@@ -21,10 +21,11 @@ const DetailScreen = () => {
 	};
 
 	useEffect(() => {
-		dispatch(movieThunk.getMoviesByGenreThunk({
-			genre: selectedMovie.genre
+		selectedMovie.genre && dispatch(movieThunk.getMoviesByGenreThunk({
+			genre: selectedMovie.genre,
+			id: selectedMovie?._id
 		}));
-	}, [selectedMovie.genre]);
+	}, [selectedMovie?.genre, selectedMovie?._id]);
 
 	useEffect(() => {
 		dispatch(movieThunk.getMovieDetailsByIdThunk(id));

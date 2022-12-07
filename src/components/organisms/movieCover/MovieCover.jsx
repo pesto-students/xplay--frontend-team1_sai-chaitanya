@@ -49,7 +49,9 @@ const MovieCover = ({
                     xxl={12}>
                     <Typography.Text
                         strong>
-                        {new Date(movieDetails?.publishedAt).getFullYear()}
+                        {new Date(
+                            Number(movieDetails?.publishedAt)
+                        ).getFullYear()}
                         {' | '} {movieDetails?.genre}
                         {' | '} {movieDetails?.length}
                     </Typography.Text>
