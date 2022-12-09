@@ -3,7 +3,7 @@ import Input from './Input';
 
 describe('<Input />', () => {
 	test('display counter text', () => {
-		render(<Input />);
+		render(<Input id="test-input-id" />);
 		expect(screen.getByLabelText('input'));
 	});
 });
