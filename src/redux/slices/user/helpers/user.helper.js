@@ -4,6 +4,7 @@ const INITIAL_USER_STATE = {
     error: { hasError: false, message: '' },
     loading: false,
     signUpSuccess: false,
+    users: []
 };
 
 const setUserResponse = (state, action) => {
@@ -22,7 +23,12 @@ const setUserResponse = (state, action) => {
     state.loading = false;
 };
 
+const setUsers = (state, action, isSuccess) =>
+    state.users = isSuccess ? action.payload?.data
+        : INITIAL_USER_STATE.users;
+
 export {
+    setUsers,
     setUserResponse,
     INITIAL_USER_STATE
 };

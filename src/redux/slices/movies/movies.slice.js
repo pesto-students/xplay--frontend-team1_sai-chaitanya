@@ -6,14 +6,17 @@ import {
 	setPromotedMovie,
 	setSearchResults,
 	setSelectedMovie,
-	INITIAL_MOVIES_STATE
+	INITIAL_MOVIES_STATE,
+	setWatchPartyResponse
 } from './helpers';
 import { SLICES } from '../../constants';
 import { movieThunk } from '../../thunks';
+import { resetState } from '../../actions';
 
 const {
 	searchMoviesByTitle,
 	getMoviesByTypeThunk,
+	createWatchPartyThunk,
 	getPromotedMovieThunk,
 	getMoviesByGenreThunk,
 	getMovieDetailsByIdThunk
@@ -24,6 +27,7 @@ const moviesSlice = createSlice({
 	initialState: INITIAL_MOVIES_STATE,
 	extraReducers: (builder) => {
 		builder
+			.addCase(resetState, () => INITIAL_MOVIES_STATE)
 			.addCase(searchMoviesByTitle.fulfilled, (state, action) => {
 				setSearchResults(state, action, true);
 			})
@@ -53,6 +57,15 @@ const moviesSlice = createSlice({
 			})
 			.addCase(getMoviesByGenreThunk.rejected, (state, action) => {
 				setMoviesByGenre(state, action, false);
+			})
+			.addCase(createWatchPartyThunk.pending, (state) => {
+				state.loading = true;
+			})
+			.addCase(createWatchPartyThunk.fulfilled, (state, action) => {
+				setWatchPartyResponse(state, action, true);
+			})
+			.addCase(createWatchPartyThunk.rejected, (state, action) => {
+				setWatchPartyResponse(state, action, false);
 			});
 	}
 });

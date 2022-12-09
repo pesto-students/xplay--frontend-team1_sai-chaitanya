@@ -23,12 +23,12 @@ const MovieList = ({
 			{((isMobile && isSlider) || !isMobile || showTitleOnAllScreens) && !!movieList.length && (
 				<Row className={styles.titleRow}>
 					<Col
-						lg={23}
-						md={20}
-						sm={20}
-						xl={23}
+						lg={22}
+						md={22}
+						sm={22}
+						xl={22}
 						xs={20}
-						xxl={23}>
+						xxl={22}>
 						<Typography.Title
 							className={styles.movieListTitle}
 							level={isSlider ? 5 : 4}
@@ -40,12 +40,12 @@ const MovieList = ({
 					</Col>
 					{isSlider && (
 						<Col
-							lg={1}
-							md={4}
-							sm={4}
-							xl={1}
+							lg={2}
+							md={2}
+							sm={2}
+							xl={2}
 							xs={4}
-							xxl={1}>
+							xxl={2}>
 							<Typography.Link onClick={onLinkClick}>
 								See all
 							</Typography.Link>
@@ -59,7 +59,8 @@ const MovieList = ({
 						<Molecules.Card
 							coverImage={{
 								alt: movie?.title,
-								source: movie?.coverImageUrl
+								source: movie?.thumbnails?.[0]
+									?? movie?.coverImageUrl
 							}}
 							key={index}
 							onClick={() => onMovieClick(movie?._id)}
@@ -81,7 +82,8 @@ const MovieList = ({
 							<Molecules.Card
 								coverImage={{
 									alt: movie?.title,
-									source: movie?.coverImageUrl
+									source: movie?.thumbnails?.[0]
+										?? movie?.coverImageUrl
 								}}
 								onClick={() => onMovieClick(movie?._id)}
 							/>

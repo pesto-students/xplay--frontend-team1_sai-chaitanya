@@ -8,6 +8,7 @@ import Context from '../../../context';
 import styles from './movieCover.module.scss';
 
 const MovieCover = ({
+    actions,
     isPromotional,
     movieDetails
 }) => {
@@ -31,18 +32,14 @@ const MovieCover = ({
                         level={3}>
                         {movieDetails?.title}
                     </Typography.Title>
-                    <Typography.Text
+                    {movieDetails?.tagLine ? <Typography.Text
                         className={styles.movieCoverTagline}
                         strong>
                         {movieDetails?.tagLine}
-                    </Typography.Text>
+                    </Typography.Text> : null}
                 </Col>
             </Row>
-            <Row className={
-                [styles.movieCoverInfo,
-                !isPromotional && styles.promotionalInfo
-                ].filter(Boolean)
-            }>
+            <Row className={styles.movieCoverInfo}>
                 <Col
                     lg={12}
                     md={16}
@@ -52,7 +49,9 @@ const MovieCover = ({
                     xxl={12}>
                     <Typography.Text
                         strong>
-                        {new Date(movieDetails?.publishedAt).getFullYear()}
+                        {new Date(
+                            Number(movieDetails?.publishedAt)
+                        ).getFullYear()}
                         {' | '} {movieDetails?.genre}
                         {' | '} {movieDetails?.length}
                     </Typography.Text>
@@ -77,36 +76,33 @@ const MovieCover = ({
                 : null
             }
             <Row className={styles.movieCoverActions}>
-                <Col
-                    lg={12}
-                    md={24}
-                    sm={24}
-                    xl={12}
-                    xs={24}
-                    xxl={12}>
-                    <Button
+                <Col>
+                    {actions?.onPlayClick ? <Button
                         className={styles.playButton}
                         htmlType="button"
                         icon={<PlayCircleOutlined />}
+                        onClick={actions?.onPlayClick}
                         type="primary">
                         Play
-                    </Button>
+                    </Button> : null}
 
-                    <Button
+                    {actions?.onWatchWithFriendsClick ? <Button
                         className={styles.watchWithFriendsButton}
                         htmlType="button"
                         icon={<AliyunOutlined />}
+                        onClick={actions?.onWatchWithFriendsClick}
                         type="primary">
                         Watch with friends
-                    </Button>
+                    </Button> : null}
 
-                    <Button
+                    {actions?.onAddToWatchlistClick ? <Button
                         className={styles.addToWatchlistButton}
                         htmlType="button"
                         icon={<PlusCircleOutlined />}
+                        onClick={actions?.onAddToWatchlistClick}
                         type="text">
                         Add to Watchlist
-                    </Button>
+                    </Button> : null}
                 </Col>
             </Row>
         </Content>
@@ -114,11 +110,13 @@ const MovieCover = ({
 }
 
 MovieCover.propTypes = {
+    actions: PropTypes.object,
     isPromotional: PropTypes.bool,
     movieDetails: PropTypes.object.isRequired
 };
 
 MovieCover.defaultProps = {
+    actions: {},
     isPromotional: false
 };
 

@@ -1,69 +1,114 @@
 @import '../../../styles/colors.scss';
 
-.main {
-	width: 100%;
+.form {
+	:global {
+		.ant-btn-primary {
+			border-color: black;
+
+			&:hover,
+			&:focus {
+				border-color: black;
+			}
+		}
+
+		.ant-form-item {
+			margin-bottom: 0.4rem;
+			width: 100%;
+		}
+
+		.ant-input-affix-wrapper {
+			background: $input-bg-color;
+		}
+	}
+}
+
+.buttonPrimary {
+	background: $primary-color;
+	border-radius: 0.4rem;
+}
+
+.cancelActions {
+	justify-content: center;
+}
+
+.container {
 	display: flex;
-	flex-direction: row;
-	height: 100%;
+	align-items: center;
+	height: 100vh;
 }
 
-.bgImage {
-	background-image: url('../../../assets/images/second.png');
-	width: 100%;
-	height: 100%;
-	opacity: 0.04;
+.mobileContainer {
+	align-items: normal;
+	margin: 0 1.2rem;
 }
 
-.rightchild {
+.infoCol {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	:global {
+		h3.ant-typography {
+			margin-top: inherit;
+			text-transform: capitalize;
+		}
+	}
+}
+
+.infoContainer {
+	height: 100%;
+	padding-left: 1.6rem;
+
+	:global {
+		.ant-row {
+			align-items: center;
+			height: inherit;
+		}
+	}
+}
+
+.infoContainerMobile {
+	height: auto;
+}
+
+.infoContainer::before, .infoContainerMobile::before {
+	bottom: 0;
+	background-image: url('https://res.cloudinary.com/tusharwalzade216/image/upload/v1669043796/movies/fifth.jpg');
+	background-size: cover;
+	content: '';
+	left: 0;
+	opacity: 0.5;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.movieCoverTagline {
+	font-size: smaller;
+}
+
+.partyActions {
+	flex-wrap: inherit;
+	gap: 0.4rem;
+	justify-content: space-evenly;
+
+	.buttonPrimary {
+		flex: 1 1 0;
+	}
+}
+
+.sidebar {
+	display: flex;
 	background-color: #212c2c;
+	align-items: center;
+	height: 100%;
 }
 
-.content {
-	display: flex;
-	flex-direction: row;
-	margin-top: -52rem;
-}
-
-.party {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.cardDesign{
-    margin-left: auto;
-}
-
-.header {
-	color: lightgray;
-}
-.name {
-	font-size: 1.8rem;
-	color: white;
-	font-weight: 500;
-}
-h1 {
-	margin-top: 5.2rem;
-	font-weight: 500;
-}
-
-h6 {
-	margin-top: 16rem;
-	margin-bottom: -9.5em;
-}
-
-.code {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-top: 12rem;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.playmode {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	margin-top: 1rem;
+.sidebarContent {
+	margin: 0.8rem;
+	
+	.otp {
+		margin: 1.2em;
+		text-align: center;
+	}
 }

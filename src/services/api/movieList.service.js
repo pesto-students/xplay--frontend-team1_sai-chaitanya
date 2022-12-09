@@ -2,6 +2,14 @@ import { http, appendUrlParams } from './utils';
 import { ENDPOINTS } from '../../constants';
 
 /**
+ * @function _createWatchParty
+ * @param {Object} watchPartyObject object of a movie
+ * @returns promise
+ */
+const _createWatchParty = (watchPartyObject) => http.post(
+	ENDPOINTS.WATCH_PARTY, watchPartyObject);
+
+/**
  * @function _getMovieDetailsById
  * @param {String} id object id of a movie
  * @returns promise
@@ -27,14 +35,15 @@ const _getMoviesByType = ({ type, query }) => {
  * @function _getMoviesByGenre
  * @param {Object} { 
  * 		genre: string, 
+ * 		id: string, // to exclude the selected movie
  * 		query: { limit: number, offset: number }
  * } 
  * @returns promise
  */
-const _getMoviesByGenre = ({ genre, query }) => {
+const _getMoviesByGenre = ({ genre, id = '', query }) => {
 	const params = appendUrlParams(query);
 	return http.get(
-		`${ENDPOINTS.MOVIE_LIST_BY_GENRE}/${genre}${params}`
+		`${ENDPOINTS.MOVIE_LIST_BY_GENRE}/${genre}/${id}${params}`
 	);
 };
 
@@ -59,6 +68,7 @@ const _searchMoviesByTitle = ({ title, query }) => {
 
 export {
 	_getMoviesByType,
+	_createWatchParty,
 	_getPromotedMovie,
 	_getMoviesByGenre,
 	_getMovieDetailsById,

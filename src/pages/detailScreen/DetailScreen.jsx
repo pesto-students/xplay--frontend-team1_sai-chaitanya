@@ -21,10 +21,11 @@ const DetailScreen = () => {
 	};
 
 	useEffect(() => {
-		dispatch(movieThunk.getMoviesByGenreThunk({
-			genre: selectedMovie.genre
+		selectedMovie.genre && dispatch(movieThunk.getMoviesByGenreThunk({
+			genre: selectedMovie.genre,
+			id: selectedMovie?._id
 		}));
-	}, [selectedMovie.genre]);
+	}, [selectedMovie?.genre, selectedMovie?._id]);
 
 	useEffect(() => {
 		dispatch(movieThunk.getMovieDetailsByIdThunk(id));
@@ -32,7 +33,16 @@ const DetailScreen = () => {
 
 	return (
 		<>
-			<Components.MovieCover movieDetails={selectedMovie ?? {}} />
+			<Components.MovieCover
+				actions={{
+					onPlayClick: () =>
+						handleNavigation(`/playerScreen/${selectedMovie?._id}`),
+					onWatchWithFriendsClick: () =>
+						handleNavigation(`/watchParty/${selectedMovie?._id}`),
+					onAddToWatchlistClick: () => { },
+				}}
+				movieDetails={selectedMovie ?? {}}
+			/>
 			<Components.MovieDetailsContent
 				castDetails={selectedMovie?.metadata?.cast ?? ''}
 				directorDetails={selectedMovie?.metadata?.director ?? ''}

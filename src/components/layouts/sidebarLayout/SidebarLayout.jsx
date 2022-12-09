@@ -20,7 +20,7 @@ const SidebarLayout = ({ children }) => {
 				<Content
 					className={styles.content}
 					style={{
-						marginLeft: sidebarCollapsed ? '4.8rem' : '13.2rem'
+						marginLeft: sidebarCollapsed ? '4rem' : '12.4rem'
 					}}>
 					{children}
 				</Content>
