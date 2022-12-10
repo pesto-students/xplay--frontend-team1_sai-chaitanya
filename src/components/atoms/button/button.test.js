@@ -1,17 +1,19 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { wait } from '@testing-library/user-event/dist/utils/misc/wait';
 
 import Button from './Button';
 
-describe('<Button />', () => {
-	test('to check button', () => {
-	  render(<Button id="test-button-id" onClick={() => { }} />);
-	  expect(screen.getByLabelText('input'));
-  });
-
-	test('clicking the button toggles an answer on/off', () => {
-		render(<Button id="test-button-id-2" onClick={() => { }} />);
-		const button = screen.getByLabelText('input');
-		fireEvent.click(button);
-		expect(screen.getByLabelText('input')).toBeInTheDocument();
+describe('<Button /> test cases', () => {
+	test('to check if button is rendering', async () => {
+		render(
+			<Button
+				id="test-button-id"
+				onClick={() => { }}
+				title="Test Button"
+			/>);
+		await wait(() => {
+			expect(screen.getByLabelText('Test Button'));
+		});
 	});
 });
