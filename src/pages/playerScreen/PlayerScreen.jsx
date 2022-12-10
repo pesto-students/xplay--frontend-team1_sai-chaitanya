@@ -59,7 +59,7 @@ const PlayerScreen = () => {
 	}
 
 	useEffect(() => {
-		selectedMovie?.genre && dispatch(movieThunk.getMoviesByGenreThunk({
+		dispatch(movieThunk.getMoviesByGenreThunk({
 			genre: selectedMovie?.genre,
 			id: selectedMovie?._id
 		}));
