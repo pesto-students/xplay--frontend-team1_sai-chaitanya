@@ -11,6 +11,7 @@ const Form = ({
 	form,
 	formWidth,
 	id,
+	initialValues,
 	labelAlign,
 	layout,
 	loading,
@@ -31,7 +32,8 @@ const Form = ({
 					className={wrapperClass}
 					form={form}
 					initialValues={{
-						remember: true
+						remember: true,
+						...initialValues
 					}}
 					id={id}
 					labelAlign={labelAlign}
@@ -77,6 +79,7 @@ Form.propTypes = {
 	form: PropTypes.any,
 	formWidth: PropTypes.object,
 	id: PropTypes.string.isRequired,
+	initialValues: PropTypes.object,
 	labelAlign: PropTypes.oneOf(['left', 'right']),
 	layout: PropTypes.oneOf(['inline', 'horizontal', 'vertical']),
 	loading: PropTypes.bool,
@@ -101,6 +104,7 @@ Form.defaultProps = {
 		xl: 6,
 		xs: 20
 	},
+	initialValues: {},
 	labelAlign: 'left',
 	layout: 'vertical',
 	loading: false,

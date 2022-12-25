@@ -2,6 +2,12 @@
 
 .xpCarousel {
 	margin: auto 1.6rem;
+
+	:global {
+		.ant-image {
+			width: 100%;
+		}
+	}
 }
 
 .xpContent {

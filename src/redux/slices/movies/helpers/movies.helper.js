@@ -7,6 +7,7 @@ const INITIAL_MOVIES_STATE = {
     searchResults: [],
     featuredMovies: [],
     watchPartyResponse: {},
+    fetchWatchPartyResponse: {}
 };
 
 const setFeaturedMovies = (state, action, isSuccess) => {
@@ -59,6 +60,12 @@ const setWatchPartyResponse = (state, action, isSuccess) => {
         : INITIAL_MOVIES_STATE.watchPartyResponse;
 };
 
+const setFetchWatchPartyResponse = (state, action, isSuccess) => {
+    state.loading = false;
+    state.fetchWatchPartyResponse = isSuccess ? action.payload?.data
+        : INITIAL_MOVIES_STATE.fetchWatchPartyResponse;
+};
+
 export {
     setMoviesByType,
     setMoviesByGenre,
@@ -66,5 +73,6 @@ export {
     setSearchResults,
     setSelectedMovie,
     INITIAL_MOVIES_STATE,
-    setWatchPartyResponse
+    setWatchPartyResponse,
+    setFetchWatchPartyResponse
 };

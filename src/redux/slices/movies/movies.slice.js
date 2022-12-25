@@ -7,13 +7,15 @@ import {
 	setSearchResults,
 	setSelectedMovie,
 	INITIAL_MOVIES_STATE,
-	setWatchPartyResponse
+	setWatchPartyResponse,
+	setFetchWatchPartyResponse
 } from './helpers';
 import { SLICES } from '../../constants';
 import { movieThunk } from '../../thunks';
 import { resetState } from '../../actions';
 
 const {
+	getPartyByOtpThunk,
 	searchMoviesByTitle,
 	getMoviesByTypeThunk,
 	createWatchPartyThunk,
@@ -66,6 +68,12 @@ const moviesSlice = createSlice({
 			})
 			.addCase(createWatchPartyThunk.rejected, (state, action) => {
 				setWatchPartyResponse(state, action, false);
+			})
+			.addCase(getPartyByOtpThunk.fulfilled, (state, action) => {
+				setFetchWatchPartyResponse(state, action, true);
+			})
+			.addCase(getPartyByOtpThunk.rejected, (state, action) => {
+				setFetchWatchPartyResponse(state, action, false);
 			});
 	}
 });

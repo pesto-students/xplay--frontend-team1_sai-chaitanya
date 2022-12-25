@@ -48,6 +48,13 @@ const _getMoviesByGenre = ({ genre, id = '', query }) => {
 };
 
 /**
+ * @function _getPartyByOtp
+ * @param {String} otp 
+ * @returns promise
+ */
+const _getPartyByOtp = (otp) => http.get(`${ENDPOINTS.GET_WATCH_PARTY}/${otp}`);
+
+/**
  * @function _getPromotedMovie
  * @returns promise
  */
@@ -67,6 +74,7 @@ const _searchMoviesByTitle = ({ title, query }) => {
 };
 
 export {
+	_getPartyByOtp,
 	_getMoviesByType,
 	_createWatchParty,
 	_getPromotedMovie,

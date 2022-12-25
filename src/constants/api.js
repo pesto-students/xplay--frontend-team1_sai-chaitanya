@@ -8,6 +8,7 @@ const ENDPOINTS = {
 	MOVIE_LIST_BY_TYPE: '/movieList',
 	PROMOTED_MOVIE: '/promotedMovie',
 	SEARCH_MOVIE: '/movieList/search',
+	GET_WATCH_PARTY: '/watchParty/otp',
 	MOVIE_LIST_BY_GENRE: '/movieList/genre'
 };
 

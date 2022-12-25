@@ -7,6 +7,7 @@ import DetailScreen from './detailScreen';
 import MoreLikeThis  from './moreLikeThis';
 import LatestOnXplay from './latestOnXplay';
 import FeaturedMovies from './featuredMovies';
+import JoinWatchParty from './joinWatchParty';
 
 export default {
 	Home,
@@ -17,5 +18,6 @@ export default {
 	DetailScreen,
 	MoreLikeThis,
 	LatestOnXplay,
-	FeaturedMovies
+	FeaturedMovies,
+	JoinWatchParty
 };

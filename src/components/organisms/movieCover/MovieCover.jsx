@@ -39,24 +39,28 @@ const MovieCover = ({
                     </Typography.Text> : null}
                 </Col>
             </Row>
-            <Row className={styles.movieCoverInfo}>
-                <Col
-                    lg={12}
-                    md={16}
-                    sm={24}
-                    xl={12}
-                    xs={24}
-                    xxl={12}>
-                    <Typography.Text
-                        strong>
-                        {new Date(
-                            Number(movieDetails?.publishedAt)
-                        ).getFullYear()}
-                        {' | '} {movieDetails?.genre}
-                        {' | '} {movieDetails?.length}
-                    </Typography.Text>
-                </Col>
-            </Row>
+            {movieDetails?.publishedAt ? (
+                <Row className={styles.movieCoverInfo}>
+                    <Col
+                        lg={12}
+                        md={16}
+                        sm={24}
+                        xl={12}
+                        xs={24}
+                        xxl={12}>
+                        <Typography.Text
+                            strong>
+                            {new Date(
+                                Number(movieDetails?.publishedAt)
+                            ).getFullYear()}
+                            {' | '} {movieDetails?.genre}
+                            {' | '} {movieDetails?.length}
+                        </Typography.Text>
+                    </Col>
+                </Row>
+            ) : (
+                null
+            )}
             {!isMobile && isPromotional ? (
                 <Row>
                     <Col
@@ -83,7 +87,7 @@ const MovieCover = ({
                         icon={<PlayCircleOutlined />}
                         onClick={actions?.onPlayClick}
                         type="primary">
-                        Play
+                        {actions?.playButtonTitle ?? 'Play'}
                     </Button> : null}
 
                     {actions?.onWatchWithFriendsClick ? <Button
@@ -92,7 +96,7 @@ const MovieCover = ({
                         icon={<AliyunOutlined />}
                         onClick={actions?.onWatchWithFriendsClick}
                         type="primary">
-                        Watch with friends
+                        {actions?.watchWithFriendsButtonTitle ?? 'Watch with friends'}
                     </Button> : null}
 
                     {actions?.onAddToWatchlistClick ? <Button

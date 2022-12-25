@@ -22,6 +22,7 @@ const DetailScreen = lazy(() => import('../pages/detailScreen'));
 const MoreLikeThis = lazy(() => import('../pages/moreLikeThis'));
 const LatestOnXplay = lazy(() => import('../pages/latestOnXplay'));
 const FeaturedMovies = lazy(() => import('../pages/featuredMovies'));
+const JoinWatchParty = lazy(() => import('../pages/joinWatchParty'));
 
 const tokens = getValueFromStorage('okta-token-storage');
 const userName = tokens?.idToken?.claims?.name || 'Test User';
@@ -128,14 +129,14 @@ const SECURED_ROUTES = [
 		title: 'Watch List'
 	},
 	{
-		component: () => null,
+		component: JoinWatchParty,
 		exact: true,
 		icon: <UsergroupAddOutlined />,
 		mobile: {
 			sequence: 1,
 			showOnMenuBar: true
 		},
-		path: '',
+		path: '/joinWatchParty',
 		sequence: 6,
 		showOnMenubar: true,
 		title: 'Join Watch Party'
