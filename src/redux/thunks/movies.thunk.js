@@ -37,6 +37,13 @@ const getMovieDetailsByIdThunk = createAsyncThunk(
         .catch((error) => error?.response?.data)
 );
 
+const getPartyByOtpThunk = createAsyncThunk(
+    'movies/getPartyByOtp',
+    async (otp) => await movieService._getPartyByOtp(otp)
+        .then((response) => response?.data)
+        .catch((error) => error?.response?.data)
+);
+
 const searchMoviesByTitle = createAsyncThunk(
     'movies/searchMoviesByTitle',
     async (args) => await movieService._searchMoviesByTitle(args)
@@ -45,6 +52,7 @@ const searchMoviesByTitle = createAsyncThunk(
 );
 
 export {
+    getPartyByOtpThunk,
     searchMoviesByTitle,
     getMoviesByTypeThunk,
     createWatchPartyThunk,

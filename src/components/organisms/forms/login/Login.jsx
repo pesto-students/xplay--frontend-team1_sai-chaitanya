@@ -54,6 +54,10 @@ const Login = () => {
 				error={error}
 				form={form}
 				id="login-form"
+				initialValues={{
+					['email']: 'guest@xplay.com',
+					['password']: 'Secure123'
+				}}
 				loading={loading}
 				name="login-form"
 				onSubmit={onSubmit}

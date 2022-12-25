@@ -1,0 +1,21 @@
+@import '../../../styles/colors.scss';
+
+.hostRow {
+	display: flex;
+	flex-direction: column;
+	margin-left: 1.2rem;
+}
+
+.playButton {
+    background-color: $primary-color;
+    flex: 1 1 0;
+}
+
+.titleRow {
+	margin-left: 1.2rem;
+	margin-top: 1.2rem;
+}
+
+.title2Row {
+	margin-left: 1.2rem;
+}

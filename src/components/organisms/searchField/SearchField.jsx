@@ -9,7 +9,7 @@ import Form from '../form';
 import Molecules from '../../molecules';
 import styles from './searchField.module.scss';
 
-const SearchField = ({ onClick, title }) => {
+const SearchField = ({ onClick, placeholder, title }) => {
 	const [form] = useForm();
 
 	const handleInputChange = (e) => {
@@ -62,11 +62,11 @@ const SearchField = ({ onClick, title }) => {
 				<Molecules.FormField
 					id="search"
 					name="search"
-					placeholder="Enter movie title"
+					placeholder={placeholder}
 					onChange={handleInputChange}
 					rules={[{
 						required: true,
-						message: `Please enter movie title!`
+						message: `Please ${placeholder?.toLowerCase()}!`
 					}]}
 				/>
 			</Form>
@@ -76,11 +76,13 @@ const SearchField = ({ onClick, title }) => {
 
 SearchField.propTypes = {
 	onClick: PropTypes.func,
+	placeholder: PropTypes.string,
 	title: PropTypes.string
 };
 
 SearchField.defaultProps = {
 	onClick: () => { },
+	placeholder: 'Enter movie title',
 	title: 'Search for a movie'
 };
 
