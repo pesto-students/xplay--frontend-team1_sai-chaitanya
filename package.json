@@ -1,7 +1,6 @@
 {
   "name": "xplay-ott",
   "version": "0.1.0",
-  "homepage": "https://pesto-students.github.io/xplay--frontend-team1_sai-chaitanya",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
@@ -28,8 +27,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -69,7 +66,6 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
-    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "react-test-renderer": "^18.2.0"
   }
