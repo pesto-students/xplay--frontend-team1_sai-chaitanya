@@ -1,5 +1,14 @@
 import axios from 'axios';
+
 import { API_BASE_URL } from '../../../constants';
+import { getValueFromStorage } from '../../../utils';
+
+const tokens = getValueFromStorage('okta-token-storage');
+const accessToken = tokens?.accessToken?.accessToken || null;
+
+if (accessToken) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+}
 
 const http = axios.create({
     baseURL: API_BASE_URL

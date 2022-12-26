@@ -68,7 +68,7 @@ const MovieList = ({
 					))}
 				</Carousel>
 			) : (
-				<Row>
+				<Row className={styles.movieListContainer}>
 					{movieList?.map((movie, index) => (
 						<Col
 							key={index}

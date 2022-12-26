@@ -23,6 +23,14 @@
 	text-align: center;
 }
 
+.movieListContainer {
+	:global {
+		.ant-image {
+			width: 100%;
+		}
+	}
+}
+
 .movieListTitle {
 	color: $primary-color;
 	margin: auto 1.2rem;
